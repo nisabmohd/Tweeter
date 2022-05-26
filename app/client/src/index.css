@@ -7,18 +7,19 @@ body {
 
 }
 .container{
-  width: 75%;
-  height:88vh;
+  width: 70%;
+  /* height:89vh; */
   margin: auto;
   padding-top: 25px;
   display: flex;
   flex-direction: row;
+
 }
 .left_container{
   width:70%;
   height:88vh;
   overflow-y: scroll;
-
+  border-radius: 12px;
 }
 .right_container{
   width:30%;

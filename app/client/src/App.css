@@ -1,0 +1,10 @@
+.tagstyle {
+    text-decoration: none;
+    font-weight: 600;
+    color: #828282;
+    margin-top: 2px;
+    font-size: 12.85px;
+}
+.active {
+    color: #2F80ED;
+}

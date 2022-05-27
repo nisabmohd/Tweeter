@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 export default function Post(props) {
     return (
-        <div className='post' style={{ marginTop: '15px', padding: '12px', backgroundColor: 'white', borderRadius: '9px' }}>
+        <div className='post' style={{ marginBottom: '15px', padding: '12px', backgroundColor: 'white', borderRadius: '9px' }}>
             <div className="userheader">
                 <div className="user" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '15px' }}>
                     <img style={{ width: '32px', borderRadius: '9px', marginLeft: '2%' }} src={props.userimg} alt="" />

@@ -10,8 +10,8 @@ const postschema = new mongoose.Schema({
         required: true
     },
     likes: {
-        type: Number,
-        default: 0,
+        type: Array,
+        default: [],
     },
     comments: {
         type: Array,
@@ -29,9 +29,13 @@ const postschema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    timestamp:{
-        type:Date,
-        default:Date.now()
+    timestamp: {
+        type: Date,
+        default: Date.now()
+    },
+    hashtag: {
+        type: Array,
+        default: []
     }
 })
 

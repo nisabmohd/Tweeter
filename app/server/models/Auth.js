@@ -26,12 +26,10 @@ const signUpSchema = new mongoose.Schema({
         default: []
     },
     userimg: {
-        type: String,
-        default: "https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg"
+        type: String
     },
     coverimg: {
-        type: String,
-        default: "https://goodmorningimagesforlover.com/wp-content/uploads/2018/11/create-facebook-cover-photo-for-whatsapp.jpg"
+        type: String
     }
 })
 

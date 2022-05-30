@@ -30,6 +30,9 @@ const signUpSchema = new mongoose.Schema({
     },
     coverimg: {
         type: String
+    },
+    bio:{
+        type:String
     }
 })
 

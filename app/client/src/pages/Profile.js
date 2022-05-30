@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
 import Tags from '../components/Tags'
+import { baseurl } from '../apicalls'
 
-export default function Profile() {
+export default function Profile(props) {
+    const[profile,setProfile]=useState(null)
+    useEffect(()=>{
+        async function getprofile(){
+            const result=await fetch(`${baseurl}/user/${props.uid}`)
+            const data=await result.json()
+            console.log(data);
+            setProfile(data)
+        }
+        getprofile();
+    },[])
     return (
         <div className='profile'>
             <div className="coverimage">
@@ -11,14 +22,14 @@ export default function Profile() {
             <div className="container" style={{ marginTop: '-79px' }}>
                 <div className="userdetails" style={{ background: 'white', borderRadius: '9px', padding: '12px', width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px' }}>
-                        <img style={{ width: '128px', borderRadius: '9px' }} src="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" alt="" />
+                        <img style={{ width: '128px', borderRadius: '9px' }} src={profile?.userimg} alt="" />
                     </div>
                     <div className="rightDetails" style={{ width: '100%' }}>
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
-                                <h4 style={{}}>Phillip Lackner</h4>
-                                <p style={{ fontSize: '11.785px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>1024</span> Following</p>
-                                <p style={{ fontSize: '11.985px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>29k</span> Followers</p>
+                                <h4 style={{}}>{profile?.username}</h4>
+                                <p style={{ fontSize: '11.785px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.following.length}</span> Following</p>
+                                <p style={{ fontSize: '11.985px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
                             </div>
                             <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
                                 <button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Follow</button>

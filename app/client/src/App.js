@@ -19,7 +19,7 @@ function App() {
   async function login(email, password) {
     if (email && password) {
       const data = { email: email, password: password };
-      fetch(`${baseurl}auth/login`, {
+      fetch(`${baseurl}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function App() {
                 <Route path="/" element={<Home></Home>} />
                 <Route path="/explore" element={<Explore />} />
                 <Route path="/saved" element={<Saved />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile  uid={uid} />} />
                 <Route path="/edit" element={<Account />} />
               </Routes>
             </>

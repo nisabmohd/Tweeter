@@ -10,7 +10,8 @@ router.post('/newpost', async (req, res) => {
             uid: req.body.uid,
             post_id: postid(),
             caption: req.body.caption,
-            image: req.body.image ? req.body.image : ""
+            image: req.body.image ? req.body.image : "",
+            hashtag: req.body.hashtag && req.body.hashtag.length != 0 ? req.body.hashtag : []
         })
         const res = await newpost.save()
         res.status(200).send({ status: "success" })
@@ -47,7 +48,7 @@ router.get('/:id', async (req, res) => {
 
 
 //user post
-router.get('/user/:uid', async (req, res) => {
+router.get('/:uid', async (req, res) => {
     try {
         const post = await postModel.find({ uid: req.params.uid });
         res.send(post)
@@ -70,7 +71,21 @@ router.delete('/:id', async (req, res) => {
     // }
 })
 
+//like post
 
 
+
+//unlike post
+
+
+
+//comment
+
+
+
+//retweet
+
+
+//timeline posts
 
 module.exports = router

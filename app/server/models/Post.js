@@ -2,12 +2,10 @@ const mongoose = require('mongoose')
 const postschema = new mongoose.Schema({
     uid: {
         type: String,
-        required: true
     },
     post_id: {
         type: String,
         unique: true,
-        required: true
     },
     likes: {
         type: Array,

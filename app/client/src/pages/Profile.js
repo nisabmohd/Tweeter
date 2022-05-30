@@ -31,8 +31,8 @@ export default function Profile() {
                 </div>
             </div>
             <div className="container">
-                <div className="right_container">
-                    <Tags />
+                <div className="right_container" style={{marginLeft:'0'}}>
+                    <Tags marginleft="0px" />
                 </div>
                 <div className="left_container" style={{marginLeft:'20px'}}>
                     <div className="posts">

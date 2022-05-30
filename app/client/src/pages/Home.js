@@ -14,8 +14,8 @@ function Home() {
         </div>
       </div>
       <div className="right_container">
-        <Tags />
-        <Whotofollow />
+        <Tags marginleft="15px" />
+        <Whotofollow marginleft="15px" />
       </div>
     </div>
   )

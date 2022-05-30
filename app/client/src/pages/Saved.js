@@ -12,7 +12,7 @@ function Saved() {
         </div>
       </div>
       <div className="right_container">
-        <Tags />
+        <Tags marginleft="15px" />
       </div>
     </div>
   )

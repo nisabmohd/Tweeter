@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function whotofollow() {
+export default function whotofollow(props) {
     return (
-        <div style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: '15px', marginTop: '19px' }}>
+        <div style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: props.marginleft, marginTop: '19px' }}>
             <div className="header" style={{ width: '96.25%', margin: 'auto' }}>
                 <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', }}>Who to follow</h6>
             </div>

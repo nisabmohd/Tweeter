@@ -40,4 +40,10 @@ router.post('/signup', async (req, res) => {
 
 // edit userinfo
 
+
+
+//forgot password
+
+
+
 module.exports = router

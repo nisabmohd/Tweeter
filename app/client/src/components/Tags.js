@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Tags() {
+export default function Tags(props) {
     return (
-        <div className='tags' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: '15px' }}>
+        <div className='tags' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: props.marginleft }}>
             <div className="header" style={{ borderBottom: '1px solid #E0E0E0', width: '96.25%', margin: 'auto' }}>
                 <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', }}>Trends for you</h6>
             </div>

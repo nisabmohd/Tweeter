@@ -6,8 +6,8 @@ export default function Explore() {
   return (
     <div className="container">
       <div className="right_container" style={{marginLeft:0,marginRight:'15px'}}>
-        <Tags />
-        <Whotofollow />
+        <Tags marginleft="0px" />
+        <Whotofollow marginleft="0px" />
       </div>
       <div className="left_container">
         <div className="posts" style={{}}>

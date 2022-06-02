@@ -26,11 +26,8 @@ router.post('/newpost', async (req, res) => {
 //all post
 router.get('/allpost', async (req, res) => {
     try {
-        let arr = []
-        const allpost = await postModel.find();
-        arr.push(allpost)
-        console.log(arr);
-        res.send(arr)
+        const allpost = await postModel.find().sort({timestamp: -1});
+        res.send(allpost)
 
     } catch (err) {
         res.status(500).send(err)
@@ -51,10 +48,11 @@ router.get('/:id', async (req, res) => {
 
 
 //user post
-router.get('/:uid', async (req, res) => {
+router.get('/up/:uid', async (req, res) => {
     try {
-        const post = await postModel.find({ uid: req.params.uid });
-        res.send(post)
+        const post = await postModel.find({ uid: req.params.uid }).sort({timestamp: -1});
+        console.log(post);
+        res.status(200).send(post)
 
     } catch (err) {
         res.status(500).send(err)

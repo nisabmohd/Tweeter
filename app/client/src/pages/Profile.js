@@ -5,22 +5,28 @@ import { baseurl } from '../apicalls'
 
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
+    const [posts, setPosts] = useState([])
     useEffect(() => {
         async function getprofile() {
             const result = await fetch(`${baseurl}/user/${props.uid}`)
             const data = await result.json()
-            console.log(data);
             setProfile(data)
         }
+        async function getUserpost() {
+            const result = await fetch(`${baseurl}/post/up/${props.uid}`)
+            const data = await result.json()
+            setPosts(data)
+        }
         getprofile();
+        getUserpost()
     }, [])
     useEffect(() => {
-        
+
     }, [profile])
     return (
         <div className='profile'>
             <div className="coverimage">
-                <img style={{ width: '100%', height: '250px', objectFit: 'cover' }} src="https://goodmorningimagesforlover.com/wp-content/uploads/2018/11/create-facebook-cover-photo-for-whatsapp.jpg" alt="" />
+                <img style={{ width: '100%', height: '250px', objectFit: 'cover' }} src={profile?.coverimg} alt="" />
             </div>
             <div className="container" style={{ marginTop: '-79px' }}>
                 <div className="userdetails" style={{ background: 'white', borderRadius: '9px', padding: '12px', width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -39,7 +45,7 @@ export default function Profile(props) {
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>
-                            <p style={{ fontSize: '12.85px', marginLeft: '15px', marginTop: '-2px' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio molestiae voluptatum, natus atque deserunt quia odio eveniet odit cum expedita quisquam fugit blanditiis quo rem. Denmark 🏳️‍🌈</p>
+                            <p style={{ fontSize: '12.85px', marginLeft: '35px', marginTop: '-2px' }}>{profile?.bio === "" ? "-" : profile?.bio}</p>
                         </div>
                     </div>
                 </div>
@@ -50,8 +56,11 @@ export default function Profile(props) {
                 </div>
                 <div className="left_container" style={{ marginLeft: '20px' }}>
                     <div className="posts">
-                        <Post userimg="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" name="Philip Lackner" date="26-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! dolore alias dolorem quas cupiditate tempore! 😊" />
-                        <Post userimg="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" img="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/japan-tokyo-tower-night-little-japan.jpg" name="Philip Lackner" date="23-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! Mollitia nam cum consequatur amet tempore corporis odio corrupti blanditiis, illo quae sapiente debitis voluptatum!" />
+                        {
+                            posts.map(item => {
+                                return <Post date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+                            })
+                        }
                     </div>
                 </div>
 

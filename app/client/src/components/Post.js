@@ -19,7 +19,9 @@ export default function Post(props) {
                 <p style={{ fontSize: '11.5px', marginLeft: '2%' }}>{props.caption}</p>
             </div>
             <div className="image">
-                <img src={props.img} style={{ width: '95%', margin: 'auto', marginLeft: "2%", borderRadius: '9px' }} alt="" />
+                {
+                    props.img?<img src={props.img} style={{ width: '95%', margin: 'auto', marginLeft: "2%", borderRadius: '9px' }} alt="" />:<></>
+                }
             </div>
             <div className="benchmarks">
 

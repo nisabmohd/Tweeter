@@ -32,7 +32,8 @@ const signUpSchema = new mongoose.Schema({
         type: String
     },
     bio:{
-        type:String
+        type:String,
+        default:""
     },
     saved:{
         type:Array,

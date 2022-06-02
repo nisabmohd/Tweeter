@@ -2,21 +2,24 @@ const express = require('express')
 const router = express.Router()
 const postModel = require('../models/Post')
 const { v4: postid } = require('uuid');
-
+const {signUpModel}=require('../models/Auth')
 //new post
 router.post('/newpost', async (req, res) => {
     try {
+        const getUser=await signUpModel.findOne({uid:req.body.uid})
         const newpost = new postModel({
             uid: req.body.uid,
             post_id: postid(),
             caption: req.body.caption,
             image: req.body.image ? req.body.image : "",
-            hashtag: req.body.hashtag && req.body.hashtag.length != 0 ? req.body.hashtag : []
+            hashtag: req.body.hashtag && req.body.hashtag.length != 0 ? req.body.hashtag : [],
+            userimg:getUser.userimg,
+            username:getUser.username
         })
-        const res = await newpost.save()
+        const result = await newpost.save()
         res.status(200).send({ status: "success" })
     } catch (err) {
-        res.status(400).send(err)
+        res.status(500).send(err)
     }
 })
 
@@ -62,13 +65,20 @@ router.get('/:uid', async (req, res) => {
 
 //delete post
 router.delete('/:id', async (req, res) => {
-    // try {
-    //     const post = await postModel.deleteOne({ post_id: req.params.id });
-    //     res.send(post)
+    try {
+        const postDetails=await postModel.findOne({post_id:req.params.id})
+        if(!postDetails){
+            return res.status(400).send({status:"Post not found"})
+        }
+        const userDetails=await signUpModel.findOne({uid:req.body.uid})
+        if(postDetails.uid==userDetails.uid){
+            const post = await postModel.deleteOne({ post_id: req.params.id });
+        }
+        res.send({status:"deleted"})
 
-    // } catch (err) {
-    //     res.status(500).send(err)
-    // }
+    } catch (err) {
+        res.status(400).send({status:"You are not authorised to delete the post"})
+    }
 })
 
 //like post

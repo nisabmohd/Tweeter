@@ -4,16 +4,19 @@ import Tags from '../components/Tags'
 import { baseurl } from '../apicalls'
 
 export default function Profile(props) {
-    const[profile,setProfile]=useState(null)
-    useEffect(()=>{
-        async function getprofile(){
-            const result=await fetch(`${baseurl}/user/${props.uid}`)
-            const data=await result.json()
+    const [profile, setProfile] = useState(null)
+    useEffect(() => {
+        async function getprofile() {
+            const result = await fetch(`${baseurl}/user/${props.uid}`)
+            const data = await result.json()
             console.log(data);
             setProfile(data)
         }
         getprofile();
-    },[])
+    }, [])
+    useEffect(() => {
+        
+    }, [profile])
     return (
         <div className='profile'>
             <div className="coverimage">
@@ -42,10 +45,10 @@ export default function Profile(props) {
                 </div>
             </div>
             <div className="container">
-                <div className="right_container" style={{marginLeft:'0'}}>
+                <div className="right_container" style={{ marginLeft: '0' }}>
                     <Tags marginleft="0px" />
                 </div>
-                <div className="left_container" style={{marginLeft:'20px'}}>
+                <div className="left_container" style={{ marginLeft: '20px' }}>
                     <div className="posts">
                         <Post userimg="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" name="Philip Lackner" date="26-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! dolore alias dolorem quas cupiditate tempore! 😊" />
                         <Post userimg="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" img="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/japan-tokyo-tower-night-little-japan.jpg" name="Philip Lackner" date="23-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! Mollitia nam cum consequatur amet tempore corporis odio corrupti blanditiis, illo quae sapiente debitis voluptatum!" />

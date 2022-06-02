@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
 const postschema = new mongoose.Schema({
     uid: {
-        type: String,
+        type: String
     },
     post_id: {
-        type: String,
-        unique: true,
+        type: String
     },
     likes: {
         type: Array,
@@ -20,8 +19,7 @@ const postschema = new mongoose.Schema({
         default: []
     },
     caption: {
-        type: String,
-        required: true
+        type: String
     },
     image: {
         type: String,
@@ -34,6 +32,12 @@ const postschema = new mongoose.Schema({
     hashtag: {
         type: Array,
         default: []
+    },
+    username:{
+        type:String
+    },
+    userimg:{
+        type:String
     }
 })
 

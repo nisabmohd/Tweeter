@@ -50,8 +50,7 @@ router.get('/:id', async (req, res) => {
 //user post
 router.get('/up/:uid', async (req, res) => {
     try {
-        const post = await postModel.find({ uid: req.params.uid }).sort({timestamp: -1});
-        console.log(post);
+        const post = await postModel.find({ uid: req.params.uid }).sort({timestamp: 0});
         res.status(200).send(post)
 
     } catch (err) {
@@ -68,8 +67,7 @@ router.delete('/:id', async (req, res) => {
         if(!postDetails){
             return res.status(400).send({status:"Post not found"})
         }
-        const userDetails=await signUpModel.findOne({uid:req.body.uid})
-        if(postDetails.uid==userDetails.uid){
+        if(postDetails.uid==req.body.uid){
             const post = await postModel.deleteOne({ post_id: req.params.id });
         }
         res.send({status:"deleted"})

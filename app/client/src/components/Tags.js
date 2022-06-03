@@ -22,11 +22,6 @@ export default function Tags(props) {
 
                 </div>
                 <div className="ptagg" style={{marginLeft:'15px'}}>
-                    <h6 style={{ fontSize: '11.55px',marginTop:'19px' }}>#Johny</h6>
-                    <p style={{fontSize:'10px',marginTop:'-19px',color:'#828282'}}>79 tweets</p>
-
-                </div>
-                <div className="ptagg" style={{marginLeft:'15px'}}>
                     <h6 style={{ fontSize: '11.55px',marginTop:'19px' }}>#Hyderabad</h6>
                     <p style={{fontSize:'10px',marginTop:'-19px',color:'#828282'}}>1k tweets</p>
 

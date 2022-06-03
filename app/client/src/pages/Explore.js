@@ -3,6 +3,7 @@ import Post from '../components/Post'
 import Tags from '../components/Tags'
 import Whotofollow from '../components/Whotofollow'
 import { baseurl } from '../apicalls'
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function Explore() {
   const [posts, setPosts] = useState([])
@@ -16,6 +17,13 @@ export default function Explore() {
   }, [])
 
   return (
+    <>
+    <div className="container">
+      <div className="searchbar" style={{width:'100%',backgroundColor:'white',height:'45px',borderRadius:'9px',marginBottom:'-9px',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+        <input type="text" style={{ height:'85%',width:'95%',outline:'none',border:'none',fontFamily: 'Poppins' }} placeholder="Search ..." />
+        <SearchIcon style={{fontSize:'19px',cursor:'pointer'}}/>
+      </div>
+    </div>
     <div className="container">
       <div className="right_container" style={{ marginLeft: 0, marginRight: '15px' }}>
         <Tags marginleft="0px" />
@@ -25,12 +33,13 @@ export default function Explore() {
         <div className="posts" style={{}}>
           {
             posts.map(item => {
-              return <Post date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+              return <Post postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
             })
           }
         </div>
       </div>
 
     </div>
+    </>
   )
 }

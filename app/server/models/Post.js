@@ -32,12 +32,6 @@ const postschema = new mongoose.Schema({
     hashtag: {
         type: Array,
         default: []
-    },
-    username:{
-        type:String
-    },
-    userimg:{
-        type:String
     }
 })
 

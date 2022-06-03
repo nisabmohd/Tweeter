@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-function Account() {
+function Account(props) {
     return (
-        <div className="container" style={{ marginTop: '29px', borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: '75vh' }}>
+        <div className="container" style={{ marginTop: '29px', borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: props.height }}>
             <div className="forms" style={{ margin: 'auto' }}>
                 <div className="header">
                     <h3 style={{ marginTop: '-25px', marginBottom: '35px' }}>Edit profile</h3>
@@ -64,7 +64,7 @@ function Account() {
                     />
                 </div>
                 <div className="btn">
-                    <button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '31px', width: '75px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '19px' }}>Save</button>
+                    <button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '31px', width: '75px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '19px' }}>{props.btntext}</button>
                 </div>
             </div>
         </div>

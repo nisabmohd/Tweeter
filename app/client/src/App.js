@@ -17,6 +17,7 @@ import Signup from './pages/Signup';
 import Specificpost from './pages/Specificpost';
 import Specificuser from './pages/Specificuser';
 import BottomNav from './components/BottomNav';
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const [uid, setUid] = useState(null)
@@ -40,6 +41,12 @@ function App() {
           setUsername(data.username)
         })
         .catch((error) => {
+          toast.error('Error logging in', {
+            duration: 2000,
+            style: {
+                fontSize: '12px'
+            }
+        });
           console.error('Error:', error);
         });
     }
@@ -58,17 +65,18 @@ function App() {
         {
           uid ? (
             <>
+              <Toaster />
               <Navbar auth={uid} username={username} userimg={userimg} />
-              <BottomNav auth={uid} username={username} userimg={userimg}/>
+              <BottomNav auth={uid} username={username} userimg={userimg} />
               <Routes>
                 <Route path="/" element={<Home uid={uid} userimg={userimg}></Home>} />
-                <Route path="/explore" element={<Explore />} />
+                <Route path="/explore" element={<Explore uid={uid} />} />
                 <Route path="/saved" element={<Saved uid={uid} />} />
                 <Route path="/profile" element={<Profile uid={uid} />} />
                 <Route path="/edit" element={<Account height="75vh" btntext="Save" />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/post/:postid" element={<Specificpost/>} />
-                <Route path="/user/:uid" element={<Specificuser/>} />
+                <Route path="/post/:postid" element={<Specificpost />} />
+                <Route path="/user/:uid" element={<Specificuser />} />
               </Routes>
             </>
           ) : (

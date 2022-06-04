@@ -95,7 +95,7 @@ export default function Newtweet(props) {
     };
 
     return (
-        <div className='newtweet' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column' }}>
+        <div className='newtweet' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column',marginBottom:'-19px' }}>
             <Toaster />
             <div className="header" style={{ borderBottom: '1px solid #E0E0E0', width: '96.25%', margin: 'auto' }}>
                 <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', }}>Tweet Something</h6>

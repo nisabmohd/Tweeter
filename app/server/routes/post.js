@@ -27,9 +27,9 @@ router.post('/newpost', async (req, res) => {
 })
 
 //all post
-router.get('/allpost', async (req, res) => {
+router.get('/allpost/:uid', async (req, res) => {
     try {
-        const allpost = await postModel.find().sort({ timestamp: -1 });
+        const allpost = await postModel.find({ uid: { $ne: req.params.uid } }).sort({ timestamp: -1 });
         res.send(allpost)
 
     } catch (err) {
@@ -54,7 +54,8 @@ router.get('/:postid', async (req, res) => {
 router.get('/up/:uid', async (req, res) => {
     try {
         const post = await postModel.find({ uid: req.params.uid }).sort({ timestamp: 0 });
-        res.status(200).send(post)
+        const retweetedpost = await postModel.find({ retweet: req.params.uid })
+        res.status(200).send(post.concat(...retweetedpost))
 
     } catch (err) {
         res.status(500).send(err)
@@ -82,17 +83,6 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-
-//post of a hastag
-router.get('/hashtag/:hashtag', async (req, res) => {
-    try {
-        const data = await postModel.find({ hashtag: req.params.hashtag })
-        console.log(data);
-        res.send("sdfsfdgdfgddf")
-    } catch (err) {
-        res.status(400).send("sdfsdf")
-    }
-})
 
 //like post
 router.put('/like/:postid', async (req, res) => {
@@ -165,7 +155,7 @@ router.put('/addsaved/:uid', async (req, res) => {
 
 
 //undo save
-router.put('/undosaved/:uid', async(req, res) => {
+router.put('/undosaved/:uid', async (req, res) => {
     try {
         const result = await signUpModel.updateOne({ uid: req.params.uid }, { $pull: { saved: req.body.post_id } })
         res.send(result)
@@ -198,21 +188,33 @@ router.get('/saved/:uid', async (req, res) => {
 //timeline posts *
 router.get('/timeline/:uid', async (req, res) => {
     try {
+        const mypost = await postModel.find({ uid: req.params.uid }).sort({ timestamp: 0 });
+        const retweetedpost = await postModel.find({ retweet: req.params.uid })
+        mypost.concat(...retweetedpost)
         const userDetails = await signUpModel.findOne({ uid: req.params.uid })
         const followingarr = userDetails.following;
         var follwingpost = []
         await Promise.all(followingarr.map(async item => {
             const temppost = await postModel.find({ uid: item })
+            // console.log(temppost);
             follwingpost.push(...temppost)
         }))
-        console.log(follwingpost);
-        res.send("dfdf")
+        res.send(follwingpost.concat(...mypost))
     } catch (err) {
         res.status(400).send(err)
     }
 })
 
-//search hashtag *
+//search hashtag 
+router.get('/hashtag/:tag', async (req, res) => {
+    try {
+        const response = await postModel.find({ hashtag: req.params.tag })
+        res.status(200).send(response);
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
 
+//top hashtags
 
 module.exports = router

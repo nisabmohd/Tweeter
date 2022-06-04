@@ -1,21 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { baseurl } from '../apicalls'
 import Newtweet from '../components/Newtweet'
+import Post from '../components/Post'
 // import Post from '../components/Post'
 import Tags from '../components/Tags'
 import Whotofollow from '../components/Whotofollow'
 function Home(props) {
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    async function gettimeline() {
+      const res = await fetch(`${baseurl}/post/timeline/${props.uid}`)
+      const data = await res.json()
+      setPosts(data);
+    }
+    gettimeline()
+  }, [])
   return (
     <div className="container">
       <div className="left_container">
         <Newtweet uid={props.uid} userimg={props.userimg} />
         <div className="posts" style={{ marginTop: '39px' }}>
-          {/* <Post userimg="https://firebasestorage.googleapis.com/v0/b/upload-pics-e599e.appspot.com/o/images%2F76525761.jpg?alt=media&token=72ccac23-f971-49c1-9c3b-ea67aecb38d6" img="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176" name="Nisab Mohd" date="26-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! dolore alias dolorem quas cupiditate tempore! 😊" />
-          <Post userimg="https://cdn-images-1.listennotes.com/podcasts/coding-in-flow/branding-productivity-the-5q_l24sIO17-ctgXQhV5yHE.1400x1400.jpg" img="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/japan-tokyo-tower-night-little-japan.jpg" name="Philip Eric" date="23-05-2022" caption=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Non fugiat debitis, fugit vitae velit dolore alias dolorem quas cupiditate tempore! Mollitia nam cum consequatur amet tempore corporis odio corrupti blanditiis, illo quae sapiente debitis voluptatum!" /> */}
+          {
+            posts.map(item => {
+              return <Post key={item.post_id + new Date().toDateString()} likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+            })
+          }
         </div>
       </div>
       <div className="right_container">
         <Tags marginleft="15px" />
-        <Whotofollow marginleft="15px" />
+        <Whotofollow uid={props.uid} marginleft="15px" />
       </div>
     </div>
   )

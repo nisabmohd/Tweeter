@@ -5,11 +5,11 @@ import Whotofollow from '../components/Whotofollow'
 import { baseurl } from '../apicalls'
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Explore() {
+export default function Explore(props) {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     async function getAll() {
-      const res = await fetch(`${baseurl}/post/allpost`)
+      const res = await fetch(`${baseurl}/post/allpost/${props.uid}`)
       const data = await res.json()
       setPosts(data)
     }
@@ -27,7 +27,7 @@ export default function Explore() {
       <div className="container ">
         <div className="right_container" style={{ marginLeft: 0, marginRight: '15px' }}>
           <Tags marginleft="0px" />
-          <Whotofollow marginleft="0px" />
+          <Whotofollow uid={props.uid} marginleft="0px" />
         </div>
         <div className="left_container">
           <div className="posts paddingcont" style={{}}>

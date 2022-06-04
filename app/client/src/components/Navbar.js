@@ -29,19 +29,19 @@ function Navbar(props) {
             <div className="logo" style={{ width: "30%" }}>
                 <img src={logo} alt="" style={{ marginLeft: "2.5vw", width: '109px' }} />
             </div>
-            <div className="tags" style={{ width: "40%", display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
+            <div className="tags navtags" >
                 <NavLink to="/" className={({ isActive }) => isActive ? 'tagstyle active' : 'tagstyle'}>Home</NavLink>
                 <NavLink to="/explore" className={({ isActive }) => isActive ? 'tagstyle active' : 'tagstyle'}>Explore</NavLink>
                 <NavLink to="/saved" className={({ isActive }) => isActive ? 'tagstyle active' : 'tagstyle'}>Saved</NavLink>
             </div>
             <div className="user" style={{ width: "30%", display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <img style={{ width: '32px', borderRadius: '9px', marginLeft: 'auto' }} src={JSON.parse(localStorage.getItem('auth')).userimg} alt="" />
-                <p style={{ color: '#828282', fontWeight: '600', marginLeft: '19px', fontSize: '12.5px' }}>
+                <p className='parahide' onClick={handleClick} style={{ color: '#828282', fontWeight: '600', marginLeft: '19px', fontSize: '12.5px', cursor: 'pointer' }}>
                     {
                         JSON.parse(localStorage.getItem('auth')).username
                     }
                 </p>
-                <ArrowDropDownIcon style={{ marginRight: '2.5vw', marginLeft: "10px", marginBottom: '-2px', cursor: 'pointer' }} color="disabled" onClick={handleClick} />
+                <ArrowDropDownIcon onClick={handleClick} style={{ marginRight: '2.5vw', marginLeft: "10px", marginBottom: '-2px', cursor: 'pointer' }} color="disabled" />
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}

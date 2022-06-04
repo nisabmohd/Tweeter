@@ -15,6 +15,8 @@ import Login from './pages/Login';
 import { baseurl } from './apicalls'
 import Signup from './pages/Signup';
 import Specificpost from './pages/Specificpost';
+import Specificuser from './pages/Specificuser';
+import BottomNav from './components/BottomNav';
 
 function App() {
   const [uid, setUid] = useState(null)
@@ -57,6 +59,7 @@ function App() {
           uid ? (
             <>
               <Navbar auth={uid} username={username} userimg={userimg} />
+              <BottomNav auth={uid} username={username} userimg={userimg}/>
               <Routes>
                 <Route path="/" element={<Home uid={uid} userimg={userimg}></Home>} />
                 <Route path="/explore" element={<Explore />} />
@@ -65,6 +68,7 @@ function App() {
                 <Route path="/edit" element={<Account height="75vh" btntext="Save" />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/post/:postid" element={<Specificpost/>} />
+                <Route path="/user/:uid" element={<Specificuser/>} />
               </Routes>
             </>
           ) : (

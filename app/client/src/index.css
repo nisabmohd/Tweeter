@@ -2,11 +2,11 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(242,242,242);
+  background-color: rgb(242, 242, 242);
   font-family: 'Poppins', sans-serif;
-
 }
-.container{
+
+.container {
   width: 70%;
   /* height:89vh; */
   margin: auto;
@@ -15,23 +15,109 @@ body {
   flex-direction: row;
 
 }
-.left_container{
-  width:70%;
-  height:88vh;
+.paddingcont{
+  margin-bottom: 25vh;
+}
+.navtags {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-Content: space-evenly;
+}
+
+.left_container {
+  width: 70%;
+  height: 88vh;
   overflow-y: scroll;
   border-radius: 12px;
 }
-.right_container{
-  width:30%;
-  height:88vh;
+
+.right_container {
+  width: 30%;
+  height: 88vh;
 }
+
 *::-webkit-scrollbar {
   display: none;
 }
-*{
+
+* {
   -ms-overflow-style: none;
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
-.hoverbtn:hover{
+
+.hoverbtn:hover {
   background-color: rgb(243, 243, 243);
 }
+.bottomnavbar{
+  position: absolute;
+  bottom: -12px;
+  width: 100%;
+  height: 55px;
+  z-index: 999;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bottomnav {
+  margin: auto;
+  width: 80%;
+  height: 55px;
+  z-index: 999;
+  position: absolute;
+  bottom: 0;
+  justify-content: space-between;
+}
+@media screen and (max-width:1015px) {
+  .right_container {
+    display: none;
+  }
+
+  .left_container {
+    width: 100%;
+  }
+}
+@media screen and (min-width:675px) {
+  .bottomnav {
+   display: none;
+  }
+  .bottomnavbar{
+    display: none;
+  }
+}
+@media screen and (max-width:675px) {
+  .container {
+    width: 95%;
+  }
+
+  .tags {
+    display: none;
+  }
+  body{
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .navbar {
+    padding-left: 1.25%;
+    padding-right: 0.05%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .parahide {
+    display: none;
+  }
+}
+
+@media screen and (max-width:490px) {
+  .parahideaction {
+    display: none;
+    margin-left: 0;
+  }
+}
+

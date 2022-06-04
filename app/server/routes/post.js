@@ -3,6 +3,9 @@ const router = express.Router()
 const postModel = require('../models/Post')
 const { v4: postid } = require('uuid');
 const { signUpModel } = require('../models/Auth')
+
+
+
 //new post
 router.post('/newpost', async (req, res) => {
     try {
@@ -36,9 +39,9 @@ router.get('/allpost', async (req, res) => {
 
 
 //specific post
-router.get('/:id', async (req, res) => {
+router.get('/:postid', async (req, res) => {
     try {
-        const post = await postModel.findOne({ post_id: req.params.id });
+        const post = await postModel.findOne({ post_id: req.params.postid });
         res.send(post)
 
     } catch (err) {
@@ -94,7 +97,7 @@ router.get('/hashtag/:hashtag', async (req, res) => {
 //like post
 router.put('/like/:postid', async (req, res) => {
     try {
-        const result=await postModel.updateOne({ post_id: req.params.postid },{$push:{likes:req.body.uid}})
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $push: { likes: req.body.uid } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -105,7 +108,7 @@ router.put('/like/:postid', async (req, res) => {
 //unlike post
 router.put('/unlike/:postid', async (req, res) => {
     try {
-        const result=await postModel.updateOne({ post_id: req.params.postid },{$pull:{likes:req.body.uid}})
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $pull: { likes: req.body.uid } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -116,7 +119,7 @@ router.put('/unlike/:postid', async (req, res) => {
 //comment
 router.put('/comment/:postid', async (req, res) => {
     try {
-        const result=await postModel.updateOne({ post_id: req.params.postid },{$push:{comments:{uid:req.body.uid,comment:req.body.comment}}})
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $push: { comments: { uid: req.body.uid, comment: req.body.comment } } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -127,7 +130,7 @@ router.put('/comment/:postid', async (req, res) => {
 //retweet
 router.put('/retweet/:postid', async (req, res) => {
     try {
-        const result=await postModel.updateOne({ post_id: req.params.postid },{$push:{retweet:req.body.uid}})
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $push: { retweet: req.body.uid } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -135,26 +138,81 @@ router.put('/retweet/:postid', async (req, res) => {
 })
 
 
-//save apost in user
+//undo retweet
 
-
-//get saved post of user
-router.get('/saved/:uid',async(req,res)=>{
-    try{
-        const getAllSaveduid=await signUpModel.findOne({uid:req.params.uid})
-        const allsavedpost=[]
-        getAllSaveduid.saved.map(async(item)=>{
-            const temppost=await postModel.findOne({post_id:item})
-            allsavedpost.push(temppost);
-        })
-        res.send(allsavedpost)
-    }catch(err){
+router.put('/undoretweet/:postid', async (req, res) => {
+    try {
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $pull: { retweet: req.body.uid } })
+        res.send(result)
+    } catch (err) {
         res.status(400).send(err)
     }
 })
 
-//timeline posts
 
+
+//save a post in user
+router.put('/addsaved/:uid', async (req, res) => {
+    try {
+        const result = await signUpModel.updateOne({ uid: req.params.uid }, { $push: { saved: req.body.post_id } })
+        res.send(result)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
+
+
+
+
+//undo save
+router.put('/undosaved/:uid', async(req, res) => {
+    try {
+        const result = await signUpModel.updateOne({ uid: req.params.uid }, { $pull: { saved: req.body.post_id } })
+        res.send(result)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
+
+
+
+
+//get saved post of user
+router.get('/saved/:uid', async (req, res) => {
+    try {
+        const getAllSaveduid = await signUpModel.findOne({ uid: req.params.uid })
+        const saveduidarr = getAllSaveduid.saved
+        var post = []
+        await Promise.all(saveduidarr.map(async element => {
+            const temppost = await postModel.find({ post_id: element })
+            post.push(...temppost)
+        }))
+        res.send(post)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
+
+
+
+//timeline posts *
+router.get('/timeline/:uid', async (req, res) => {
+    try {
+        const userDetails = await signUpModel.findOne({ uid: req.params.uid })
+        const followingarr = userDetails.following;
+        var follwingpost = []
+        await Promise.all(followingarr.map(async item => {
+            const temppost = await postModel.find({ uid: item })
+            follwingpost.push(...temppost)
+        }))
+        console.log(follwingpost);
+        res.send("dfdf")
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
+
+//search hashtag *
 
 
 module.exports = router

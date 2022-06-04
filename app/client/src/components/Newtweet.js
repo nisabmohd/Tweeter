@@ -58,6 +58,7 @@ export default function Newtweet(props) {
         if (tweet === '') return
         settweet('')
         const hashtagarr = hashtagString.split(',')
+        setHashtagString('')
         const data = {
             uid: props.uid,
             caption: tweet,
@@ -102,7 +103,7 @@ export default function Newtweet(props) {
                 <label htmlFor="imagein">
                     <div className="imgico hoverbtn" style={{ marginLeft: '2%', display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '-5px', fontFamily: 'Poppins', width: 'fit-content', cursor: 'pointer', padding: '0.2px 9px', borderRadius: '6px' }}>
                         <ImageIcon color="primary" style={{ cursor: 'pointer', width: '22px' }} />
-                        <p style={{ fontSize: '12px', marginLeft: "5px", color: '#828282', widht: '275px' }}>Upload</p>
+                        <p style={{ fontSize: '12px', marginLeft: "5px", color: '#828282', widht: '275px' }}>Image</p>
                     </div>
                 </label>
                 <div className="imgico hoverbtn" style={{ marginLeft: '2%', display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '-5px', fontFamily: 'Poppins', cursor: 'pointer', padding: '0.2px 9px', borderRadius: '6px', }} onClick={handleClickOpen}>
@@ -111,7 +112,7 @@ export default function Newtweet(props) {
                 </div>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogContent>
-                        <DialogContentText style={{ fontSize: '13.75px' }}>
+                        <DialogContentText style={{ fontSize: '13.75px', fontFamily: 'Poppins'  }}>
                             Add Hashtags seperated by commas ( , )
                         </DialogContentText>
                         <TextField
@@ -128,8 +129,8 @@ export default function Newtweet(props) {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button style={{ fontSize: '10.75px', fontFamily: 'Poppins' }} onClick={handleClose}>Cancel</Button>
-                        <Button style={{ fontSize: '10.75px', fontFamily: 'Poppins' }} onClick={handleClose}>done</Button>
+                        <Button style={{ fontSize: '11.75px', fontFamily: 'Poppins',color:'red' ,fontWeight:'bold'}} onClick={handleClose}>Cancel</Button>
+                        <Button style={{ fontSize: '11.75px', fontFamily: 'Poppins',fontWeight:'bold' }} onClick={handleClose}>done</Button>
                     </DialogActions>
                 </Dialog>
                 <div className="btntweet" style={{ marginLeft: 'auto', width: 'fit-content', marginRight: '9px', }}>

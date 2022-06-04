@@ -32,7 +32,10 @@ export default function Newtweet(props) {
         const storageRef = ref(storage, 'photos/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
         toast.loading('uploading...', {
-            duration: 3000
+            duration: 3000,
+            style: {
+               fontSize:'12px'
+            }
         });
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -57,7 +60,9 @@ export default function Newtweet(props) {
     const uploadTweet = () => {
         if (tweet === '') return
         settweet('')
-        const hashtagarr = hashtagString.split(',')
+        let hashtagarr=[]
+        if(hashtagString!=='')
+        hashtagarr= hashtagString.split(',')
         setHashtagString('')
         const data = {
             uid: props.uid,
@@ -75,6 +80,7 @@ export default function Newtweet(props) {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                window.location.reload()
             })
             .catch((error) => {
                 console.error(error);

@@ -6,20 +6,35 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { baseurl } from '../apicalls'
 import { Link } from "react-router-dom";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, Dialog, DialogContent, DialogContentText, Menu, MenuItem } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import toast, { Toaster } from 'react-hot-toast';
+import SendIcon from "@mui/icons-material/Send";
+
 
 export default function Post(props) {
     const [user, setuser] = useState(null)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [liked, setLiked] = useState(false)
     const [retweeted, setRetweeted] = useState(false)
-    const [likesCount,setlikesCount]=useState(props.likes.length)
-    const [commentsCount,setcommentsCount]=useState(props.comments.length)
-    const [retweetCount,setretweetCount]=useState(props.retweets.length)
+    const [saved, setSaved] = useState(false)
+    const [likesCount, setlikesCount] = useState(props.likes.length)
+    const [commentsCount, setcommentsCount] = useState(props.comments.length)
+    const [retweetCount, setretweetCount] = useState(props.retweets.length)
+    const [commentText, setCommentText] = useState('')
+    const [open1, setOpen1] = React.useState(false);
+    const [me, setMe] = useState(null)
+
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    };
+
+    const handleClose1 = () => {
+        setOpen1(false);
+    };
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -29,10 +44,22 @@ export default function Post(props) {
         setAnchorEl(null);
     };
     useEffect(() => {
+        async function getme() {
+            const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
+            const user = await result.json()
+            setMe(user.saved)
+        }
         async function getUserDetails() {
+            getme()
             const result = await fetch(`${baseurl}/user/${props.uid}`)
             const user = await result.json()
+            // console.log(user.saved);
             setuser(user)
+            if (me?.includes(props.postid)) {
+                setSaved(true)
+            }
+            // console.log(user.saved);
+
         }
         getUserDetails()
         if (props.likes.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
@@ -41,7 +68,14 @@ export default function Post(props) {
         if (props.retweets.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setRetweeted(true)
         }
+
     }, [])
+    useEffect(() => {
+        if (me != null)
+            if (me.includes(props.postid)) {
+                setSaved(true)
+            }
+    }, [me])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {
@@ -54,7 +88,7 @@ export default function Post(props) {
             const data = await res.json()
             console.log(data);
             setLiked(false)
-            setlikesCount(likesCount-1)
+            setlikesCount(likesCount - 1)
         }
         else {
             const res = await fetch(`${baseurl}/post/like/${props.postid}`, {
@@ -67,11 +101,142 @@ export default function Post(props) {
             const data = await res.json()
             console.log(data);
             setLiked(true)
-            setlikesCount(likesCount+1)
+            setlikesCount(likesCount + 1)
         }
+    }
+    async function handleRetweet() {
+        if (retweeted) {
+            const res = await fetch(`${baseurl}/post/undoretweet/${props.postid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ uid: JSON.parse(localStorage.getItem('auth')).uid })
+            })
+            const data = await res.json()
+            console.log(data);
+            setRetweeted(false)
+            setretweetCount(retweetCount - 1)
+        }
+        else {
+            const res = await fetch(`${baseurl}/post/retweet/${props.postid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ uid: JSON.parse(localStorage.getItem('auth')).uid })
+            })
+            const data = await res.json()
+            console.log(data);
+            setRetweeted(true)
+            setretweetCount(retweetCount + 1)
+        }
+    }
+    async function handleComment() {
+        if (commentText === '') {
+            return toast.error('Enter comment to post')
+        }
+        const data = {
+            uid: JSON.parse(localStorage.getItem('auth')).uid,
+            comment: commentText
+        }
+        fetch(`${baseurl}/post/comment/${props.postid}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                toast.success('Commented', {
+                    duration: 3000,
+                    style: {
+                        fontSize: '12px'
+                    }
+                });
+                setcommentsCount(commentsCount + 1)
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+    async function handleSave() {
+        if (!saved) {
+            const data = {
+                post_id: props.postid
+            }
+            fetch(`${baseurl}/post/addsaved/${JSON.parse(localStorage.getItem('auth')).uid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setSaved(true)
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        } else {
+            const data = {
+                post_id: props.postid
+            }
+            fetch(`${baseurl}/post/undosaved/${JSON.parse(localStorage.getItem('auth')).uid}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setSaved(false)
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+    async function handlecopy() {
+        let str = window.location.pathname
+        let url = window.location.href
+        const newstr=url.replace(str,'')
+
+        navigator.clipboard.writeText(`${newstr}/post/${props.postid}`);
+        toast.success('Copied to clipboard', {
+            duration: 3000,
+            style: {
+                fontSize: '12px'
+            }
+        });
+
+    }
+    async function deleteTweet() {
+        const data = {
+            uid: JSON.parse(localStorage.getItem('auth')).uid
+        }
+        fetch(`${baseurl}/post/${props.postid}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("deleted");
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
     return (
         <div style={{ backgroundColor: 'white', borderRadius: '9px', marginBottom: '15px', paddingBottom: '15px' }}>
+            <Toaster />
             <div className='post' style={{ padding: '12px', backgroundColor: 'white', borderRadius: '9px', position: 'relative', paddingBottom: '5.5px' }}>
                 <div className="userheader">
                     <div className="user" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '15px' }}>
@@ -92,9 +257,9 @@ export default function Post(props) {
                         }}
                         style={{ borderRadius: '9px' }}
                     >
-                        <MenuItem onClick={handleClose} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><ShareIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Share</div></MenuItem>
+                        <MenuItem onClick={() => {handlecopy();handleClose()}} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><ShareIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Share</div></MenuItem>
                         {
-                            props.uid === JSON.parse(localStorage.getItem('auth')).uid ? <MenuItem onClick={handleClose} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><DeleteOutlineIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Delete</div></MenuItem> : <div></div>
+                            props.uid === JSON.parse(localStorage.getItem('auth')).uid ? <MenuItem onClick={() => {deleteTweet();handleClose()}} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><DeleteOutlineIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Delete</div></MenuItem> : <div></div>
                         }
 
 
@@ -144,37 +309,68 @@ export default function Post(props) {
                 <p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p>
             </div>
             <div className="actionbuttons" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', margin: 'auto', marginTop: '6px' }}>
-                <Button className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
-                    <ChatBubbleOutlineIcon style={{ width: '18px',}} />
-                    <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px'   }}>Comment</p>
+                <Button onClick={handleClickOpen1} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
+                    <ChatBubbleOutlineIcon style={{ width: '18px', }} />
+                    <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Comment</p>
                 </Button>
-                <Button className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
+                <Dialog
+                    open={open1}
+                    maxWidth="xl"
+                    onClose={handleClose1}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                            <img style={{ width: '35px', borderRadius: '9px', marginLeft: '2%', marginTop: '-5px', marginRight: '5px' }} src={JSON.parse(localStorage.getItem('auth')).userimg} alt="" />
+                            <input
+                                type="text"
+                                style={{
+                                    height: "34px",
+                                    width: "345px",
+                                    marginLeft: "9px",
+                                    outline: "none",
+                                    border: "1px solid rgb(224, 224, 224)",
+                                    paddingLeft: "7px",
+                                    borderRadius: "6px",
+                                    fontFamily: "Poppins",
+                                    fontSize: "12px"
+                                }}
+                                placeholder="Tweet your reply"
+                                value={commentText}
+                                onChange={e => setCommentText(e.target.value)}
+                            />
+                            <Button onClick={() => { handleComment(); handleClose1() }} style={{ marginLeft: "3.5px" }}>
+                                <SendIcon style={{ fontSize: '25px', color: 'gray', }} />
+                            </Button>
+                        </DialogContentText>
+                    </DialogContent>
+                </Dialog>
+                <Button onClick={() => handleRetweet()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
-                        retweeted ? <><SyncIcon style={{ width: '18px', color: 'green' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'green', marginLeft: '9px'   }}>Retweet</p></> : <><SyncIcon style={{ width: '18px' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px'   }}>Retweet</p></>
+                        retweeted ? <><SyncIcon style={{ width: '18px', color: 'rgb(117,192,96)' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(117,192,96)', marginLeft: '9px' }}>Retweet</p></> : <><SyncIcon style={{ width: '18px' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Retweet</p></>
                     }
 
                 </Button>
                 <Button onClick={() => handleLike()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
-                        liked ? <><FavoriteIcon style={{ width: '18px',color: 'red' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'red', marginLeft: '9px'  }}>Like</p></> : <><FavoriteBorderIcon style={{ width: '18px'}} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px'  }}>Like</p></>
+                        liked ? <><FavoriteIcon style={{ width: '18px', color: 'red' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', color: 'red', marginLeft: '9px' }}>Like</p></> : <><FavoriteBorderIcon style={{ width: '18px' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Like</p></>
                     }
 
                 </Button>
-                <Button className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
+                <Button onClick={() => handleSave()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
-                        JSON.parse(localStorage.getItem('auth')).saved.includes(props.postid) ? <> <BookmarkIcon style={{ width: '18px',color: 'rgb(47, 128, 237)' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(47, 128, 237)', marginLeft: '9px'   }}>Save</p></> : <> <BookmarkBorderIcon style={{ width: '18px' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px'   }}>Save</p></>
+                        saved ? <> <BookmarkIcon style={{ width: '18px', color: 'rgb(47, 128, 237)' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(47, 128, 237)', marginLeft: '9px' }}>Save</p></> : <> <BookmarkBorderIcon style={{ width: '18px' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Save</p></>
                     }
 
                 </Button>
-
             </div>
-
 
         </div>
     )

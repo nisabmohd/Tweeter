@@ -17,7 +17,7 @@ function Saved(props) {
   return (
     <div className="container">
       <div className="left_container">
-        {/* <div className="posts">
+        <div className="posts">
           {
             saved?.length===0&&saved?( <div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No Saved Posts</p></div>):(<>
             {
@@ -27,7 +27,7 @@ function Saved(props) {
           }
             </>)
           }
-        </div> */}
+        </div>
       </div>
       <div className="right_container">
         <Tags marginleft="15px" />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
 import Tags from '../components/Tags'
 import { baseurl } from '../apicalls'
+import { Link } from 'react-router-dom'
 
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
@@ -41,7 +42,7 @@ export default function Profile(props) {
                                 <p style={{ fontSize: '11.985px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
                             </div>
                             <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
-                                <button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Follow</button>
+                                <Link to={`/edit`} style={{textDecoration:'none',color:'inherit'}}><button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Edit</button></Link>
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>
@@ -51,11 +52,11 @@ export default function Profile(props) {
                 </div>
             </div>
             <div className="container">
-                <div className="right_container" style={{ marginLeft: '0' }}>
+                <div className="right_container" style={{ marginLeft: '0',marginRight:"20px" }}>
                     <Tags marginleft="0px" />
                 </div>
-                <div className="left_container" style={{ marginLeft: '20px' }}>
-                    <div className="posts">
+                <div className="left_container" style={{}}>
+                    <div className="posts ">
                         {
                             posts.map(item => {
                                 return <Post likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id}  hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />

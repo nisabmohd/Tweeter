@@ -7,7 +7,7 @@ import { storage } from '../config'
 import { useNavigate } from 'react-router-dom'
 
 
-export default function Signup() {
+export default function Signup(props) {
     const navigate=useNavigate()
     const [email, setEmal] = useState('')
     const [username, setusername] = useState('')
@@ -103,6 +103,7 @@ export default function Signup() {
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem('auth',JSON.stringify(data))
+                props.setuid(data.uid)
                 navigate('/')
             })
             .catch((error) => {

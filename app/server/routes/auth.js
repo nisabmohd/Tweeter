@@ -39,30 +39,6 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-// edit userinfo
-router.post('/edituser/:uid', async (req, res) => {
-    // try {
-    //     const userthere=await signUpModel.findOne({})
-    //     const salt = await bcrypt.genSalt(10);
-    //     const createuser = new signUpModel({
-    //         uid: uniqid(),
-    //         email: req.body.email,
-    //         username: req.body.username,
-    //         password: await bcrypt.hash(req.body.password, salt),
-    //         userimg: req.body.userimg ? req.body.userimg : "https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg",
-    //         coverimg: req.body.coverimg || req.body.coverimg!==''? req.body.coverimg : "https://goodmorningimagesforlover.com/wp-content/uploads/2018/11/create-facebook-cover-photo-for-whatsapp.jpg",
-    //         bio: req.body.bio ? req.body.bio : ""
-
-    //     })
-    //     const result = await createuser.save();
-    //     res.status(200).send(result)
-    // }
-    // catch (err) {
-    //     res.status(400).send(err)
-    // }
-})
-
-
 
 
 module.exports = router

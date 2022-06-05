@@ -21,9 +21,9 @@ function Home(props) {
         <Newtweet uid={props.uid} userimg={props.userimg} />
         <div className="posts" style={{ marginTop: '39px' }}>
           {
-            posts.map(item => {
+            posts.length!==0?posts.map(item => {
               return <Post key={item.post_id + new Date().toDateString()} likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
-            })
+            }):<><div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No post to see</p></div></>
           }
         </div>
       </div>

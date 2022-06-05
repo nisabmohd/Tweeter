@@ -73,7 +73,7 @@ function App() {
                 <Route path="/explore" element={<Explore uid={uid} />} />
                 <Route path="/saved" element={<Saved uid={uid} />} />
                 <Route path="/profile" element={<Profile uid={uid} />} />
-                <Route path="/edit" element={<Account height="75vh" btntext="Save" />} />
+                <Route path="/edit" element={<Account height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/post/:postid" element={<Specificpost />} />
                 <Route path="/user/:uid" element={<Specificuser />} />

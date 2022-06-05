@@ -185,7 +185,7 @@ router.get('/saved/:uid', async (req, res) => {
 
 
 
-//timeline posts *
+//timeline posts 
 router.get('/timeline/:uid', async (req, res) => {
     try {
         const mypost = await postModel.find({ uid: req.params.uid }).sort({ timestamp: 0 });
@@ -215,6 +215,8 @@ router.get('/hashtag/:tag', async (req, res) => {
     }
 })
 
-//top hashtags
+//top hashtags*
+
+
 
 module.exports = router

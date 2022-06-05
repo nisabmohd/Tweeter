@@ -58,6 +58,13 @@ function App() {
       setUsername(JSON.parse(localStorage.getItem('auth')).username)
     }
   }, [])
+  useEffect(() => {
+    if (localStorage.getItem('auth')) {
+      setUid(JSON.parse(localStorage.getItem('auth')).uid)
+      setUserimg(JSON.parse(localStorage.getItem('auth')).userimg)
+      setUsername(JSON.parse(localStorage.getItem('auth')).username)
+    }
+  }, [uid])
 
   return (
     <BrowserRouter>
@@ -73,7 +80,7 @@ function App() {
                 <Route path="/explore" element={<Explore uid={uid} />} />
                 <Route path="/saved" element={<Saved uid={uid} />} />
                 <Route path="/profile" element={<Profile uid={uid} />} />
-                <Route path="/edit" element={<Account height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
+                <Route path="/edit" element={<Account setuid={setUid} height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
                 <Route path="/post/:postid" element={<Specificpost />} />
                 <Route path="/user/:uid" element={<Specificuser />} />
               </Routes>

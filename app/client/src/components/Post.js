@@ -43,24 +43,24 @@ export default function Post(props) {
 
         setAnchorEl(null);
     };
-    useEffect(() => {
-        async function getme() {
-            const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
-            const user = await result.json()
-            setMe(user.saved)
+    async function getme() {
+        const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
+        const user = await result.json()
+        setMe(user.saved)
+    }
+    async function getUserDetails() {
+        getme()
+        const result = await fetch(`${baseurl}/user/${props.uid}`)
+        const user = await result.json()
+        // console.log(user.saved);
+        setuser(user)
+        if (me?.includes(props.postid)) {
+            setSaved(true)
         }
-        async function getUserDetails() {
-            getme()
-            const result = await fetch(`${baseurl}/user/${props.uid}`)
-            const user = await result.json()
-            // console.log(user.saved);
-            setuser(user)
-            if (me?.includes(props.postid)) {
-                setSaved(true)
-            }
-            // console.log(user.saved);
+        // console.log(user.saved);
 
-        }
+    }
+    useEffect(() => {
         getUserDetails()
         if (props.likes.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setLiked(true)
@@ -315,18 +315,18 @@ export default function Post(props) {
                 </Button>
                 <Dialog
                     open={open1}
-                    maxWidth="xl"
+                    maxWidth="sm"
                     onClose={handleClose1}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                            <img style={{ width: '35px', borderRadius: '9px', marginLeft: '2%', marginTop: '-5px', marginRight: '5px' }} src={JSON.parse(localStorage.getItem('auth')).userimg} alt="" />
+                            <img style={{ width: '35px', borderRadius: '9px', marginLeft: '-4px', marginTop: '-5px', marginRight: '5px' }} src={JSON.parse(localStorage.getItem('auth')).userimg} alt="" />
                             <input
                                 type="text"
                                 style={{
-                                    height: "34px",
+                                    height: "36px",
                                     width: "345px",
                                     marginLeft: "9px",
                                     outline: "none",
@@ -340,8 +340,8 @@ export default function Post(props) {
                                 value={commentText}
                                 onChange={e => setCommentText(e.target.value)}
                             />
-                            <Button onClick={() => { handleComment(); handleClose1() }} style={{ marginLeft: "3.5px" }}>
-                                <SendIcon style={{ fontSize: '25px', color: 'gray', }} />
+                            <Button onClick={() => { handleComment(); handleClose1() }} style={{ marginLeft: "3.5px",marginRight:'-19px' }}>
+                                <SendIcon style={{ fontSize: '27px', color: 'gray', }} />
                             </Button>
                         </DialogContentText>
                     </DialogContent>

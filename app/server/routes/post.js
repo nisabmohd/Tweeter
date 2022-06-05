@@ -215,6 +215,16 @@ router.get('/hashtag/:tag', async (req, res) => {
     }
 })
 
+//get all comments of a post
+router.get('/comments/:postid', async (req, res) => {
+    try {
+        const result = await postModel.findOne({ post_id: req.params.postid })
+        res.status(200).send(result.comments)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
+
 //top hashtags*
 
 

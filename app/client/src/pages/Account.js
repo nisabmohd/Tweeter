@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 // import { baseurl } from '../apicalls'
 import { storage } from '../config'
@@ -14,6 +14,18 @@ function Account(props) {
     const[bio,setBio]=useState('')
     const[password,setPassword]=useState('')
     const[image,setImage]=useState('https://thumbs.dreamstime.com/b/default-avatar-profile-flat-icon-social-media-user-vector-portrait-unknown-human-image-default-avatar-profile-flat-icon-184330869.jpg')
+    useEffect(()=>{
+        async function getuserdetails(){
+            const res=await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
+            const data=await res.json()
+            setusername(data.username)
+            setEmal(data.email)
+            setcover(data.coverimg)
+            setImage(data.userimg)
+            setBio(data.bio)
+        }
+        getuserdetails()
+    },[])
     const handleUpload = (e) => {
         const data = e.target.files[0]
         if (data.type === "image/png" || data.type === "image/jpg" || data.type === "image/jpeg" || data.type === "image/gif") {
@@ -71,16 +83,6 @@ function Account(props) {
                 },
             });
         }
-        if (password === '') {
-            return toast.error('Enter Password', {
-                duration: 2000,
-                position: 'top-center',
-                style: {
-                    fontFamily: 'Poppins',
-                    fontSize: '11px'
-                },
-            });
-        }
         if (username === '') {
             return toast.error('Enter Username', {
                 duration: 2000,
@@ -92,8 +94,8 @@ function Account(props) {
             });
         }
         const data = { email: email, password: password, userimg: image, username: username, coverimg: cover, bio: bio };
-        fetch(`${baseurl}/auth/signup`, {
-            method: 'POST',
+        fetch(`${baseurl}/auth/edit/${JSON.parse(localStorage.getItem('auth')).uid}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -102,6 +104,8 @@ function Account(props) {
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem('auth',JSON.stringify(data))
+                props.setuid(data.uid)
+                window.location.reload()
                 toast.success('Updated', {
                     duration: 2000,
                     position: 'top-center',
@@ -195,7 +199,7 @@ function Account(props) {
 
                 </div>
                 <div className="password">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Create Password *</p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Change Password <span style={{fontSize:'10px',color:'#2F80ED'}}>Fill only in case you want to change</span> </p>
                     <TextField
                         type="password"
                         hiddenLabel

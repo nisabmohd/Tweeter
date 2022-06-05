@@ -35,10 +35,10 @@ function Navbar(props) {
                 <NavLink to="/saved" className={({ isActive }) => isActive ? 'tagstyle active' : 'tagstyle'}>Saved</NavLink>
             </div>
             <div className="user" style={{ width: "30%", display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <img style={{ width: '32px', borderRadius: '9px', marginLeft: 'auto' }} src={JSON.parse(localStorage.getItem('auth')).userimg} alt="" />
+                <img style={{ width: '32px', borderRadius: '9px', marginLeft: 'auto' }} src={props.userimg} alt="" />
                 <p className='parahide' onClick={handleClick} style={{ color: '#828282', fontWeight: '600', marginLeft: '19px', fontSize: '12.5px', cursor: 'pointer' }}>
                     {
-                        JSON.parse(localStorage.getItem('auth')).username
+                        props.username
                     }
                 </p>
                 <ArrowDropDownIcon onClick={handleClick} style={{ marginRight: '2.5vw', marginLeft: "10px", marginBottom: '-2px', cursor: 'pointer' }} color="disabled" />

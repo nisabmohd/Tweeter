@@ -11,13 +11,14 @@ export default function Following(props) {
       const data1 = await result1.json()
       setUsers(data1.following)
     }
+    console.log(props);
     getprofile()
   }, [])
   return (
     <>
       {
         users.length !== 0 ?
-          users.map(item => <Renderusers key={item} specific={props.specific} uid={item} />)
+          users.map(item => <Renderusers profilefollowing={props.profilefollowing} foll={props.foll} key={item} specific={props.specific} uid={item} />)
           : <></>
       }
     </>

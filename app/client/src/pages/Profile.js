@@ -11,6 +11,7 @@ export default function Profile(props) {
     const [posts, setPosts] = useState([])
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
+    const[myFollowing,setMyfollowing]=useState(0)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -30,6 +31,7 @@ export default function Profile(props) {
             const result = await fetch(`${baseurl}/user/${props.uid}`)
             const data = await result.json()
             setProfile(data)
+            setMyfollowing(data.following.length)
         }
         async function getUserpost() {
             const result = await fetch(`${baseurl}/post/up/${props.uid}`)
@@ -56,7 +58,7 @@ export default function Profile(props) {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.following.length}</span> Following</p>
+                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{myFollowing}</span> Following</p>
                                 <Dialog
                                     open={open1}
                                     onClose={handleClose1}
@@ -67,7 +69,7 @@ export default function Profile(props) {
                                         <DialogContentText id="alert-dialog-description">
                                             Followings
                                         </DialogContentText>
-                                        <Following uid={props.uid}></Following>
+                                        <Following uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing}></Following>
                                     </DialogContent>
                                 </Dialog>
                                 <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
@@ -81,7 +83,7 @@ export default function Profile(props) {
                                         <DialogContentText id="alert-dialog-description">
                                             Followers
                                         </DialogContentText>
-                                        <Followers uid={props.uid}></Followers>
+                                        <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers>
                                     </DialogContent>
                                 </Dialog>
                             </div>

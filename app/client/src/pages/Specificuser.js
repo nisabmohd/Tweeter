@@ -35,6 +35,8 @@ export default function Specificuser() {
         if (uid === (JSON.parse(localStorage.getItem('auth')).uid)) {
             return navigate('/profile')
         }
+        setOpen1(false)
+        setOpen(false)
         async function getprofile() {
             const result = await fetch(`${baseurl}/user/${uid}`)
             const data = await result.json()
@@ -52,13 +54,7 @@ export default function Specificuser() {
         }
         getprofile();
         getUserpost();
-    }, [])
-    useEffect(() => {
-        if (profile)
-            if (profile.followers.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
-                setDoesfollow(true)
-            }
-    }, [profile])
+    }, [navigate, uid])
     async function handlefollow() {
         if (doesfollow) {
             const data = {
@@ -116,7 +112,7 @@ export default function Specificuser() {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p onClick={handleClickOpen1}  style={{ fontSize: '11.785px',cursor:'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Following</p>
+                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Following</p>
                                 <Dialog
                                     open={open1}
                                     onClose={handleClose1}
@@ -130,7 +126,7 @@ export default function Specificuser() {
                                         <Following uid={uid}></Following>
                                     </DialogContent>
                                 </Dialog>
-                                <p onClick={handleClickOpen}  style={{ fontSize: '11.985px',cursor:'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
+                                <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
                                 <Dialog
                                     open={open}
                                     onClose={handleClose}
@@ -163,11 +159,11 @@ export default function Specificuser() {
                 </div>
                 <div className="left_container" style={{ marginLeft: '20px' }}>
                     <div className="posts">
-                    {
-                            (posts.length!==0)?
-                            posts.map(item => {
-                                return <Post likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id}  hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)}  key={item.post_id +item.likes.length+Math.floor(Math.random()*1000)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
-                            }):<div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No Posts to see</p></div>
+                        {
+                            (posts.length !== 0) ?
+                                posts.map(item => {
+                                    return <Post likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id + item.likes.length + Math.floor(Math.random() * 1000)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+                                }) : <div className="paragraph" style={{ width: '100%' }}><p style={{ textAlign: 'center' }}>No Posts to see</p></div>
                         }
                     </div>
                 </div>

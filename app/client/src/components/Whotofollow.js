@@ -21,7 +21,7 @@ export default function Whotofollow(props) {
             </div>
             {
                 users.map(item => {
-                    return <Peoplecard username={item.username} uid={item.uid} userimg={item.userimg} followers={item.followers} bio={item.bio} />
+                    return <Peoplecard key={item.uid} username={item.username} uid={item.uid} userimg={item.userimg} followers={item.followers} bio={item.bio} />
                 })
             }
         </div >:<></>

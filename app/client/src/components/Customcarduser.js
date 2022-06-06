@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { baseurl } from '../apicalls';
 
+
 export default function Customcarduser(props) {
     const [doesfollow, setDoesfollow] = useState(false)
     const [me, setMe] = useState()
@@ -30,8 +31,8 @@ export default function Customcarduser(props) {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     setDoesfollow(false)
+
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -51,6 +52,8 @@ export default function Customcarduser(props) {
                 .then(response => response.json())
                 .then(data => {
                     setDoesfollow(true)
+                    if (props.profilefollowing && props.foll)
+                        props.profilefollowing(props.foll + 1)
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -69,14 +72,14 @@ export default function Customcarduser(props) {
                     <p style={{ fontSize: '9px', marginTop: '-25px', marginLeft: '9px', color: '#828282' }}>{props.followers.length} followers</p>
                 </div>
                 {
-                    (props.uid === JSON.parse(localStorage.getItem('auth')).uid) ?"":
-                    <button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginLeft: 'auto', marginTop: '-13px' }}>
-                        {
-                            doesfollow ?
-                                "Unfollow"
-                                : "Follow"
-                        }
-                    </button>
+                    (props.uid === JSON.parse(localStorage.getItem('auth')).uid) ? "" :
+                        <button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginLeft: 'auto', marginTop: '-13px' }}>
+                            {
+                                doesfollow ?
+                                    "Unfollow"
+                                    : "Follow"
+                            }
+                        </button>
                 }
             </div>
             <div className="bio">

@@ -3,10 +3,28 @@ import Post from '../components/Post'
 import Tags from '../components/Tags'
 import { baseurl } from '../apicalls'
 import { Link } from 'react-router-dom'
-
+import { Dialog, DialogContent, DialogContentText } from '@mui/material'
+import Peoplecard from '../components/Peoplecard'
+import Followers from '../components/Followers'
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
     const [posts, setPosts] = useState([])
+    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleClickOpen1 = () => {
+        setOpen(true);
+    };
+
+    const handleClose1 = () => {
+        setOpen(false);
+    };
     useEffect(() => {
         async function getprofile() {
             const result = await fetch(`${baseurl}/user/${props.uid}`)
@@ -38,11 +56,37 @@ export default function Profile(props) {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p style={{ fontSize: '11.785px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.following.length}</span> Following</p>
-                                <p style={{ fontSize: '11.985px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
+                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.following.length}</span> Following</p>
+                                <Dialog
+                                    open={open1}
+                                    onClose={handleClose1}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Followers
+                                        </DialogContentText>
+                                        <Followers></Followers>
+                                    </DialogContent>
+                                </Dialog>
+                                <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Following
+                                        </DialogContentText>
+                                        <Followers></Followers>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                             <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
-                                <Link to={`/edit`} style={{textDecoration:'none',color:'inherit'}}><button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Edit</button></Link>
+                                <Link to={`/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Edit</button></Link>
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>
@@ -52,16 +96,16 @@ export default function Profile(props) {
                 </div>
             </div>
             <div className="container">
-                <div className="right_container" style={{ marginLeft: '0',marginRight:"20px" }}>
+                <div className="right_container" style={{ marginLeft: '0', marginRight: "20px" }}>
                     <Tags marginleft="0px" />
                 </div>
                 <div className="left_container" style={{}}>
                     <div className="posts ">
                         {
-                            (posts.length!==0)?
-                            posts.map(item => {
-                                return <Post likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id}  hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)}  key={item.post_id +item.likes.length+Math.floor(Math.random()*1000)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
-                            }):<div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No Posts to see</p></div>
+                            (posts.length !== 0) ?
+                                posts.map(item => {
+                                    return <Post likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id + item.likes.length + Math.floor(Math.random() * 1000)} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+                                }) : <div className="paragraph" style={{ width: '100%' }}><p style={{ textAlign: 'center' }}>No Posts to see</p></div>
                         }
                     </div>
                 </div>

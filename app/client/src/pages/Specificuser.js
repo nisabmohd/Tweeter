@@ -1,6 +1,9 @@
+import { Dialog, DialogContent, DialogContentText } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from '../apicalls'
+import Followers from '../components/Followers'
+import Following from '../components/Following'
 import Post from '../components/Post'
 import Tags from '../components/Tags'
 
@@ -12,6 +15,22 @@ export default function Specificuser() {
     const [profile, setProfile] = useState(null)
     const [doesfollow, setDoesfollow] = useState(false)
     const [posts, setPosts] = useState([])
+    const [open, setOpen] = React.useState(false);
+    const [open1, setOpen1] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleClickOpen1 = () => {
+        setOpen1(true);
+    };
+
+    const handleClose1 = () => {
+        setOpen1(false);
+    };
     useEffect(() => {
         if (uid === (JSON.parse(localStorage.getItem('auth')).uid)) {
             return navigate('/profile')
@@ -97,8 +116,34 @@ export default function Specificuser() {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p style={{ fontSize: '11.785px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Following</p>
-                                <p style={{ fontSize: '11.985px', }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
+                                <p onClick={handleClickOpen1}  style={{ fontSize: '11.785px',cursor:'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Following</p>
+                                <Dialog
+                                    open={open1}
+                                    onClose={handleClose1}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Followings
+                                        </DialogContentText>
+                                        <Following uid={uid}></Following>
+                                    </DialogContent>
+                                </Dialog>
+                                <p onClick={handleClickOpen}  style={{ fontSize: '11.985px',cursor:'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-description">
+                                            Followers
+                                        </DialogContentText>
+                                        <Followers uid={uid}></Followers>
+                                    </DialogContent>
+                                </Dialog>
                             </div>
                             <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
                                 <button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>{

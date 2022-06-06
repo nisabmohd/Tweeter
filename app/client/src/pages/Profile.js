@@ -4,8 +4,8 @@ import Tags from '../components/Tags'
 import { baseurl } from '../apicalls'
 import { Link } from 'react-router-dom'
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
-import Peoplecard from '../components/Peoplecard'
 import Followers from '../components/Followers'
+import Following from '../components/Following'
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
     const [posts, setPosts] = useState([])
@@ -19,11 +19,11 @@ export default function Profile(props) {
         setOpen(false);
     };
     const handleClickOpen1 = () => {
-        setOpen(true);
+        setOpen1(true);
     };
 
     const handleClose1 = () => {
-        setOpen(false);
+        setOpen1(false);
     };
     useEffect(() => {
         async function getprofile() {
@@ -65,9 +65,9 @@ export default function Profile(props) {
                                 >
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
-                                            Followers
+                                            Followings
                                         </DialogContentText>
-                                        <Followers></Followers>
+                                        <Following uid={props.uid}></Following>
                                     </DialogContent>
                                 </Dialog>
                                 <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
@@ -79,9 +79,9 @@ export default function Profile(props) {
                                 >
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
-                                            Following
+                                            Followers
                                         </DialogContentText>
-                                        <Followers></Followers>
+                                        <Followers uid={props.uid}></Followers>
                                     </DialogContent>
                                 </Dialog>
                             </div>

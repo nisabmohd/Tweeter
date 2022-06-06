@@ -1,4 +1,4 @@
-### Tweeter is Twitter clone with all functionalities (on built)
+### Tweeter is Twitter clone with all functionalities
 
 #### Overview :
 <img src="./images/1.png" />

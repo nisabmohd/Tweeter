@@ -18,6 +18,7 @@ import Specificpost from './pages/Specificpost';
 import Specificuser from './pages/Specificuser';
 import BottomNav from './components/BottomNav';
 import toast, { Toaster } from 'react-hot-toast';
+import Specifichashtag from './pages/Specifichashtag';
 
 
 function App() {
@@ -45,8 +46,9 @@ function App() {
           toast.error('Error logging in', {
             duration: 2000,
             style: {
-                fontSize: '12px'
-            }
+              fontFamily: 'Poppins',
+              fontSize: '11px'
+          },
         });
           console.error('Error:', error);
         });
@@ -81,6 +83,7 @@ function App() {
                 <Route path="/explore" element={<Explore uid={uid} />} />
                 <Route path="/saved" element={<Saved uid={uid} />} />
                 <Route path="/profile" element={<Profile uid={uid} />} />
+                <Route path="/search/:hashtag" element={<Specifichashtag />} />
                 <Route path="/edit" element={<Account setuid={setUid} height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
                 <Route path="/post/:postid" element={<Specificpost />} />
                 <Route path="/user/:uid" element={<Specificuser />} />

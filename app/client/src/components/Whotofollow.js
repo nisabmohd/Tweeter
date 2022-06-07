@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { baseurl } from '../apicalls'
-import { Link } from 'react-router-dom'
 import Peoplecard from './Peoplecard'
 
 export default function Whotofollow(props) {

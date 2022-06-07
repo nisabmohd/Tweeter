@@ -34,9 +34,9 @@ router.get('/random/:uid', async (req, res) => {
 })
 
 // search username
-router.get('/search/find', async (req, res) => {
+router.post('/search/find', async (req, res) => {
     try {
-        const searchRes = await signUpModel.find({ username: req.body.username }, { password: 0 })
+        const searchRes = await signUpModel.find({ username: {$regex:new RegExp(req.body.username)} }, { password: 0 })
         res.send(searchRes);
     } catch (err) {
         res.status(400).send(err)

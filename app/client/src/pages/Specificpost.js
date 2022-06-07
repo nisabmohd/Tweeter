@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { baseurl } from '../apicalls';
 import Comment from '../components/Comment'
 

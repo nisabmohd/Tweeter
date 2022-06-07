@@ -15,7 +15,7 @@ export default function Renderusers(props) {
     }, [])
     return (
         <div>{
-            user ? <Customcarduser username={user.username} uid={user.uid} userimg={user.userimg} followers={user.followers} bio={user.bio} />: <></>
+            user ? <Customcarduser width='370px' username={user.username} uid={user.uid} userimg={user.userimg} followers={user.followers} bio={user.bio} />: <></>
         }</div>
     )
 }

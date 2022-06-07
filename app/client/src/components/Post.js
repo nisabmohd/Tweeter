@@ -292,7 +292,7 @@ export default function Post(props) {
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <p key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px' }}>#{item}</p>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px',textDecoration:'none',marginBottom:'7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -308,7 +308,7 @@ export default function Post(props) {
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <p key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px' }}>#{item}</p>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px',textDecoration:'none',marginBottom:'7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>

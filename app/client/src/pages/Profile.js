@@ -4,8 +4,8 @@ import Tags from '../components/Tags'
 import { baseurl } from '../apicalls'
 import { Link } from 'react-router-dom'
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
-import Followers from '../components/Followers'
-import Following from '../components/Following'
+import Listuser from '../components/Listuser'
+
 export default function Profile(props) {
     const [profile, setProfile] = useState(null)
     const [posts, setPosts] = useState([])
@@ -58,7 +58,7 @@ export default function Profile(props) {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{myFollowing}</span> Following</p>
+                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{myFollowing}</span> Followings</p>
                                 <Dialog
                                     open={open1}
                                     onClose={handleClose1}
@@ -69,7 +69,8 @@ export default function Profile(props) {
                                         <DialogContentText id="alert-dialog-description">
                                             Followings
                                         </DialogContentText>
-                                        <Following uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing}></Following>
+                                        <Listuser uid={props.uid} following={true} text="Followings" />
+                                        {/* <Following uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing}></Following> */}
                                     </DialogContent>
                                 </Dialog>
                                 <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{profile?.followers.length}</span> Followers</p>
@@ -83,7 +84,8 @@ export default function Profile(props) {
                                         <DialogContentText id="alert-dialog-description">
                                             Followers
                                         </DialogContentText>
-                                        <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers>
+                                        <Listuser uid={props.uid} followers={true} text="Followers"  />
+                                        {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
                                     </DialogContent>
                                 </Dialog>
                             </div>

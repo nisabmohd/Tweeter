@@ -9,7 +9,6 @@ export default function Comment(props) {
             const result = await fetch(`${baseurl}/user/${props.uid}`)
             const user = await result.json()
             setuser(user)
-    
         }
         getUserDetails()
     },[])

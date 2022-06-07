@@ -14,7 +14,6 @@ export default function Specificpost() {
     async function getPost() {
       const res = await fetch(`${baseurl}/post/${postid}`)
       const post = await res.json()
-      console.log(post.comments);
       setComments(post.comments)
       setPost(post)
     }

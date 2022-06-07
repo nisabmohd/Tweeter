@@ -11,7 +11,7 @@ export default function Customcarduser(props) {
             const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
             const user = await result.json()
             setMe(user.following)
-            if (me.includes(props.uid)) {
+            if (me?.includes(props.uid)) {
                 setDoesfollow(true)
             }
         }
@@ -59,7 +59,6 @@ export default function Customcarduser(props) {
                     console.error('Error:', error);
                 });
         }
-        window.location.reload()
     }
     return (
         <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid #E0E0E0', marginLeft: '0px', width: '370px', marginTop: '10px' }}>

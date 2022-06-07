@@ -13,6 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import toast, { Toaster } from 'react-hot-toast';
 import SendIcon from "@mui/icons-material/Send";
+import Listuser from './Listuser';
 
 
 export default function Post(props) {
@@ -43,6 +44,25 @@ export default function Post(props) {
 
         setAnchorEl(null);
     };
+    const [openlikes, setOpenlikes] = React.useState(false);
+    const [openretweets, setOpenretweets] = React.useState(false);
+
+    const handleClickOpenLikes = () => {
+        setOpenlikes(true);
+    };
+
+    const handleCloseLikes = () => {
+        setOpenlikes(false);
+    };
+    const handleClickOpenRetweets = () => {
+        setOpenretweets(true);
+    };
+
+    const handleCloseRetweets = () => {
+        setOpenretweets(false);
+    };
+
+
     async function getme() {
         const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
         const user = await result.json()
@@ -86,7 +106,7 @@ export default function Post(props) {
                 body: JSON.stringify({ uid: JSON.parse(localStorage.getItem('auth')).uid })
             })
             const data = await res.json()
-            console.log(data);
+            console.debug(data);
             setLiked(false)
             setlikesCount(likesCount - 1)
         }
@@ -99,7 +119,7 @@ export default function Post(props) {
                 body: JSON.stringify({ uid: JSON.parse(localStorage.getItem('auth')).uid })
             })
             const data = await res.json()
-            console.log(data);
+            console.debug(data);
             setLiked(true)
             setlikesCount(likesCount + 1)
         }
@@ -203,7 +223,7 @@ export default function Post(props) {
     async function handlecopy() {
         let str = window.location.pathname
         let url = window.location.href
-        const newstr=url.replace(str,'')
+        const newstr = url.replace(str, '')
 
         navigator.clipboard.writeText(`${newstr}/post/${props.postid}`);
         toast.success('Copied to clipboard', {
@@ -228,7 +248,7 @@ export default function Post(props) {
             .then(response => response.json())
             .then(data => {
                 console.log("deleted");
-                window.location.reload()
+                // usehistory
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -257,9 +277,9 @@ export default function Post(props) {
                         }}
                         style={{ borderRadius: '9px' }}
                     >
-                        <MenuItem onClick={() => {handlecopy();handleClose()}} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><ShareIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Share</div></MenuItem>
+                        <MenuItem onClick={() => { handlecopy(); handleClose() }} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><ShareIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Share</div></MenuItem>
                         {
-                            props.uid === JSON.parse(localStorage.getItem('auth')).uid ? <MenuItem onClick={() => {deleteTweet();handleClose()}} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><DeleteOutlineIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Delete</div></MenuItem> : <div></div>
+                            props.uid === JSON.parse(localStorage.getItem('auth')).uid ? <MenuItem onClick={() => { deleteTweet(); handleClose() }} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><div style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }}><DeleteOutlineIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} />Delete</div></MenuItem> : <div></div>
                         }
 
 
@@ -304,9 +324,37 @@ export default function Post(props) {
 
             </div>
             <div className="benchmarks" style={{ display: 'flex', flexDirection: 'row', width: 'fit-content', marginLeft: 'auto', marginRight: '2%' }}>
-                <p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{likesCount} Likes</p>
-                <p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{retweetCount} Retweets</p>
-                <p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p>
+                <p onClick={handleClickOpenLikes} style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px", cursor: 'pointer' }}>{likesCount} Likes</p>
+                <Dialog
+                    open={openlikes}
+                    onClose={handleCloseLikes}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Likes
+                        </DialogContentText>
+                        <Listuser uid={props.uid} postid={props.postid} likes={true} text="Likes" />
+                        {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
+                    </DialogContent>
+                </Dialog>
+                <p onClick={handleClickOpenRetweets} style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px", cursor: 'pointer' }}>{retweetCount} Retweets</p>
+                <Dialog
+                    open={openretweets}
+                    onClose={handleCloseRetweets}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Retweets
+                        </DialogContentText>
+                        <Listuser uid={props.uid} postid={props.postid} retweet={true} text="Retweets" />
+                        {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
+                    </DialogContent>
+                </Dialog>
+                <Link to={`/post/${props.postid}`} style={{textDecoration:'none',color:'inherit'}}><p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p></Link>
             </div>
             <div className="actionbuttons" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', margin: 'auto', marginTop: '6px' }}>
                 <Button onClick={handleClickOpen1} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
@@ -340,7 +388,7 @@ export default function Post(props) {
                                 value={commentText}
                                 onChange={e => setCommentText(e.target.value)}
                             />
-                            <Button onClick={() => { handleComment(); handleClose1() }} style={{ marginLeft: "3.5px",marginRight:'-19px' }}>
+                            <Button onClick={() => { handleComment(); handleClose1() }} style={{ marginLeft: "3.5px", marginRight: '-19px' }}>
                                 <SendIcon style={{ fontSize: '27px', color: 'gray', }} />
                             </Button>
                         </DialogContentText>

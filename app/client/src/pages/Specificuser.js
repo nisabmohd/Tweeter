@@ -2,8 +2,7 @@ import { Dialog, DialogContent, DialogContentText } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from '../apicalls'
-import Followers from '../components/Followers'
-import Following from '../components/Following'
+import Listuser from '../components/Listuser'
 import Post from '../components/Post'
 import Tags from '../components/Tags'
 
@@ -112,7 +111,7 @@ export default function Specificuser() {
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
                             <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
                                 <h4 style={{}}>{profile?.username}</h4>
-                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Following</p>
+                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Followings</p>
                                 <Dialog
                                     open={open1}
                                     onClose={handleClose1}
@@ -123,7 +122,8 @@ export default function Specificuser() {
                                         <DialogContentText id="alert-dialog-description">
                                             Followings
                                         </DialogContentText>
-                                        <Following uid={uid}></Following>
+                                        <Listuser uid={uid} following={true} text="Followings"  />
+                                        {/* <Following uid={uid}></Following> */}
                                     </DialogContent>
                                 </Dialog>
                                 <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
@@ -137,7 +137,8 @@ export default function Specificuser() {
                                         <DialogContentText id="alert-dialog-description">
                                             Followers
                                         </DialogContentText>
-                                        <Followers uid={uid}></Followers>
+                                        <Listuser uid={uid} followers={true} text="Followers"  />
+                                        {/* <Followers uid={uid}></Followers> */}
                                     </DialogContent>
                                 </Dialog>
                             </div>

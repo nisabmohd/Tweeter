@@ -3,7 +3,8 @@ const router = express.Router()
 const postModel = require('../models/Post')
 const { v4: postid } = require('uuid');
 const { signUpModel } = require('../models/Auth')
-
+const { hashtagModel } = require('../models/Hashtags');
+const { response } = require('express');
 
 
 //new post
@@ -20,6 +21,25 @@ router.post('/newpost', async (req, res) => {
             username: getUser.username
         })
         const result = await newpost.save()
+        const temphastag = req.body.hashtag
+        if (temphastag.length !== 0) {
+            await Promise.all(temphastag.forEach((async item => {
+                const hasttagdoc = await hashtagModel.findOne({ tag: item })
+                if (hasttagdoc && hasttagdoc.length != 0) {
+
+                    const c = hasttagdoc.count + 1;
+                    const uptag = await hashtagModel.updateOne({ tag: item }, { $set: { count: c } })
+                    // console.log(uptag);
+                } else {
+                    const tagup = new hashtagModel({
+                        tag: item,
+                        count: 1
+                    })
+                    const response = tagup.save()
+                    // console.log(response);
+                }
+            })))
+        }
         res.status(200).send({ status: "success" })
     } catch (err) {
         res.status(500).send(err)
@@ -53,7 +73,7 @@ router.get('/:postid', async (req, res) => {
 //user post
 router.get('/up/:uid', async (req, res) => {
     try {
-        const post = await postModel.find({ uid: req.params.uid }).sort({ timestamp: 0 });
+        const post = await postModel.find({ uid: req.params.uid }).sort({ timestamp: -1 });
         const retweetedpost = await postModel.find({ retweet: req.params.uid })
         res.status(200).send(post.concat(...retweetedpost))
 
@@ -73,7 +93,21 @@ router.delete('/:id', async (req, res) => {
         }
         if (postDetails.uid == req.body.uid) {
             const post = await postModel.deleteOne({ post_id: req.params.id });
+            const tagarr = postDetails.hashtag
+            if (tagarr.length != 0) {
+                await Promise.all(tagarr.forEach(async (item) => {
+                    const hasttagdoc = await hashtagModel.findOne({ tag: item })
+                    if (hasttagdoc.count > 1) {
+                        const response = await hashtagModel.updateOne({ tag: item }, { $set: { count: hasttagdoc.count - 1 } })
+                    } else {
+                        const response = await hashtagModel.deleteOne({ tag: item })
+                    }
+                }))
+            }
+
+
             return res.send({ status: "deleted" })
+
         }
         else {
             return res.status(401).send({ status: "You are not authorised to delete the post" })
@@ -170,7 +204,7 @@ router.put('/undosaved/:uid', async (req, res) => {
 //get saved post of user
 router.get('/saved/:uid', async (req, res) => {
     try {
-        const getAllSaveduid = await signUpModel.findOne({ uid: req.params.uid })
+        const getAllSaveduid = await signUpModel.findOne({ uid: req.params.uid }).sort({ timestamp: 1 })
         const saveduidarr = getAllSaveduid.saved
         var post = []
         await Promise.all(saveduidarr.map(async element => {
@@ -188,7 +222,7 @@ router.get('/saved/:uid', async (req, res) => {
 //timeline posts 
 router.get('/timeline/:uid', async (req, res) => {
     try {
-        const mypost = await postModel.find({ uid: req.params.uid }).sort({ timestamp: 0 });
+        const mypost = await postModel.find({ uid: req.params.uid }).sort({ timestamp: -1 });
         const retweetedpost = await postModel.find({ retweet: req.params.uid })
         mypost.concat(...retweetedpost)
         const userDetails = await signUpModel.findOne({ uid: req.params.uid })
@@ -208,7 +242,7 @@ router.get('/timeline/:uid', async (req, res) => {
 //search hashtag 
 router.get('/hashtag/:tag', async (req, res) => {
     try {
-        const response = await postModel.find({ hashtag: req.params.tag })
+        const response = await postModel.find({ hashtag: req.params.tag }).sort({ timestamp: -1 })
         res.status(200).send(response);
     } catch (err) {
         res.status(400).send(err)
@@ -225,7 +259,18 @@ router.get('/comments/:postid', async (req, res) => {
     }
 })
 
-//top hashtags*
+//top hashtags
+router.get('/top/hashtag', async (req, res) => {
+    try {
+        const result = await hashtagModel.find().sort({ count: -1 })
+        if (result.length > 4) {
+            return res.send(result.slice(0, 4))
+        }
+        else res.send(result)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+})
 
 
 

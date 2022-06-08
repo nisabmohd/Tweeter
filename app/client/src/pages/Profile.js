@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Post from '../components/Post'
-import Tags from '../components/Tags'
+import Whotofollow from '../components/Whotofollow'
 import { baseurl } from '../apicalls'
 import { Link } from 'react-router-dom'
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
@@ -101,7 +101,7 @@ export default function Profile(props) {
             </div>
             <div className="container">
                 <div className="right_container" style={{ marginLeft: '0', marginRight: "20px" }}>
-                    <Tags marginleft="0px" />
+                    <Whotofollow mtop='0px'/>
                 </div>
                 <div className="left_container" style={{}}>
                     <div className="posts ">

@@ -88,7 +88,7 @@ export default function Explore(props) {
       <div className="container ">
         <div className="right_container" style={{ marginLeft: 0, marginRight: '15px' }}>
           <Tags marginleft="0px" />
-          <Whotofollow uid={props.uid} marginleft="0px" />
+          <Whotofollow uid={props.uid} marginleft="0px" mtop='19px' />
         </div>
         <div className="left_container">
           <div className="posts paddingcont" style={{}}>

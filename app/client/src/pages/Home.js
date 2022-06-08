@@ -29,7 +29,7 @@ function Home(props) {
       </div>
       <div className="right_container">
         <Tags marginleft="15px" />
-        <Whotofollow uid={props.uid} marginleft="15px" />
+        <Whotofollow uid={props.uid} marginleft="15px" mtop='19px' />
       </div>
     </div>
   )

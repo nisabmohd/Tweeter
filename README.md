@@ -72,10 +72,18 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 # Clone this repository
 $ git clone https://github.com/nisabmohd/Tweeter
 
-# Install dependencies
+# Install dependencies in client folder
+$ cd app/client
 $ npm install
 
-# Run the app
+# Install dependencies in server folder
+$ cd app/server
+$ npm install
+
+# Run the  client app
 $ npm start
+
+# Run the  server app
+$ node server
 ```
 

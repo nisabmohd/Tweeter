@@ -29,7 +29,7 @@ function Saved(props) {
           }
         </div>
       </div>
-      <div className="right_container">
+      <div className="right_container homehide">
         <Tags marginleft="15px" />
       </div>
     </div>

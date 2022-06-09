@@ -62,8 +62,8 @@ export default function Explore(props) {
   return (
     <>
     <Toaster/>
-      <div className="container" style={{ marginTop: '-5px' }}>
-        <div className="filter" style={{ width: '30%', backgroundColor: 'white', height: '45px', borderRadius: '9px', marginBottom: '-9px', marginRight: '15px' }}>
+      <div className="container1" style={{ marginTop: '-5px' }}>
+        <div className="filter" style={{ }}>
           <FormControl sx={{ width: '93%', height: '100%', border: 'none', outline: 'none', marginBottom: '0px', fontSize: '12px', marginLeft: '17px' }}>
             <Select disableUnderline
               sx={{ fontSize: '14px', fontFamily: 'Poppins', border: 'none', outline: 'none', height: 'inherit' }}
@@ -80,8 +80,8 @@ export default function Explore(props) {
             </Select>
           </FormControl>
         </div>
-        <div className="searchbar" style={{ width: '70%', backgroundColor: 'white', height: '45px', borderRadius: '9px', marginBottom: '-9px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <input value={searchtext} onChange={e => setSearchtext(e.target.value)} type="text" style={{ height: '85%', width: '92%', outline: 'none', border: 'none', fontFamily: 'Poppins' }} placeholder="Search ..." />
+        <div className="searchbar" style={{  }}>
+          <input value={searchtext} onChange={e => setSearchtext(e.target.value)} type="text" style={{ height: '85%', width: '88%', outline: 'none', border: 'none', fontFamily: 'Poppins',paddingLeft:'15px' }} placeholder="Search ..." />
           <SearchIcon onClick={e => searchHandle()} style={{ fontSize: '19px', cursor: 'pointer' }} />
         </div>
       </div>

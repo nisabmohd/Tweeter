@@ -86,7 +86,7 @@ function App() {
                 <Route path="/search/:hashtag" element={<Specifichashtag />} />
                 <Route path="/edit" element={<Account setuid={setUid} height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
                 <Route path="/post/:postid" element={<Specificpost />} />
-                <Route path="/user/:uid" element={<Specificuser />} />
+                <Route path="/user/:uid" element={<Specificuser uid={uid} />} />
               </Routes>
             </>
           ) : (

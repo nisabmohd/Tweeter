@@ -126,10 +126,10 @@ function Account(props) {
             });
     }
     return (
-        <div className="container" style={{ marginTop: '29px', borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'29px',paddingBottom:'19px'  }}>
+        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'3vh' }}>
             <div className="forms" style={{ margin: 'auto',marginTop:'25px',marginBottom:'19px' }}>
                 <div className="header">
-                    <h3 style={{ marginTop: '-25px', marginBottom: '35px' }}>{props.htext}</h3>
+                    <h3 style={{ marginTop: '-35px', marginBottom: '35px' }}>{props.htext}</h3>
                 </div>
                 <input onChange={e => handleUpload(e)} type="file" name="" id="imgup" hidden />
                 <label htmlFor="imgup">
@@ -149,7 +149,7 @@ function Account(props) {
                         placeholder='Eric Paul'
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px'}}
                     />
                 </div>
                 <div className="email">
@@ -164,7 +164,7 @@ function Account(props) {
                         variant="outlined"
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="cover">
@@ -179,7 +179,7 @@ function Account(props) {
                         variant="outlined"
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="bio">
@@ -194,12 +194,12 @@ function Account(props) {
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
                         value={bio}
                         onChange={e => setBio(e.target.value)}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
 
                 </div>
                 <div className="password">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Change Password <span style={{fontSize:'10px',color:'#2F80ED'}}>Fill only in case you want to change</span> </p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Change Password <span style={{fontSize:'10px',color:'red'}}>Fill only in case you want to change</span> </p>
                     <TextField
                         type="password"
                         hiddenLabel
@@ -209,7 +209,7 @@ function Account(props) {
                         variant="outlined"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
                         size="small"
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="btn">

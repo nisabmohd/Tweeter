@@ -17,7 +17,7 @@ export default function Specifichashtag() {
             setPosts(data)
         }
         fetchhashtag()
-    }, [])
+    }, [tag])
     return (<>
         <div className="container ">
             <div className="right_container" style={{ marginLeft: 0, marginRight: '15px' }}>

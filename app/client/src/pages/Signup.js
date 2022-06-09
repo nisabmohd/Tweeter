@@ -117,11 +117,11 @@ export default function Signup(props) {
             });
     }
     return (
-        <div className="container" style={{ marginTop: '29px', borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'29px',paddingBottom:'19px' }}>
+        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'9vh' }}>
             <Toaster />
-            <div className="forms" style={{ margin: 'auto',marginTop:'35px',marginBottom:'29px' }}>
+            <div className="forms" style={{ }}>
                 <div className="header">
-                    <h3 style={{ marginTop: '-25px', marginBottom: '35px' }}>Sign Up</h3>
+                    <h3 style={{ marginTop: '-5px', marginBottom: '35px' }}>Sign Up</h3>
                 </div>
                 <input onChange={e => handleUpload(e)} type="file" name="" id="imgup" hidden />
                 <label htmlFor="imgup">
@@ -141,7 +141,7 @@ export default function Signup(props) {
                         placeholder='Eric Paul'
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{ maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="email">
@@ -156,7 +156,7 @@ export default function Signup(props) {
                         variant="outlined"
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{  maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="cover">
@@ -171,7 +171,7 @@ export default function Signup(props) {
                         variant="outlined"
                         size="small"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{  maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="bio">
@@ -186,7 +186,7 @@ export default function Signup(props) {
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
                         value={bio}
                         onChange={e => setBio(e.target.value)}
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{  maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
 
                 </div>
@@ -201,7 +201,7 @@ export default function Signup(props) {
                         variant="outlined"
                         inputProps={{ style: { fontSize: '13.75px', fontFamily: 'Poppins' } }}
                         size="small"
-                        style={{ width: '390px', fontSize: '12.5px' }}
+                        style={{  maxWidth: '390px', fontSize: '12.5px',minWidth:'325px' }}
                     />
                 </div>
                 <div className="btn">

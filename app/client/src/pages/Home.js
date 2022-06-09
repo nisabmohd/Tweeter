@@ -27,7 +27,7 @@ function Home(props) {
           }
         </div>
       </div>
-      <div className="right_container">
+      <div className="right_container homehide">
         <Tags marginleft="15px" />
         <Whotofollow uid={props.uid} marginleft="15px" mtop='19px' />
       </div>

@@ -15,9 +15,21 @@ body {
   flex-direction: row;
 
 }
-.paddingcont{
+
+.container1 {
+  width: 70%;
+  /* height:89vh; */
+  margin: auto;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.paddingcont {
   margin-bottom: 25vh;
 }
+
 .navtags {
   width: 40%;
   display: flex;
@@ -50,9 +62,10 @@ body {
 .hoverbtn:hover {
   background-color: rgb(243, 243, 243);
 }
-.bottomnavbar{
+
+.bottomnavbar {
   position: absolute;
-  bottom: -12px;
+  bottom: 0;
   width: 100%;
   height: 55px;
   z-index: 999;
@@ -62,6 +75,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .bottomnav {
   margin: auto;
   width: 80%;
@@ -71,32 +85,153 @@ body {
   bottom: 0;
   justify-content: space-between;
 }
+
+.filter {
+  width: 30%;
+  background-color: white;
+  height: 45px;
+  border-radius: 9px;
+  margin-bottom: -9px;
+  margin-right: 15px
+}
+
+.searchbar {
+  width: 70%;
+  background-color: white;
+  height: 45px;
+  border-radius: 9px;
+  margin-bottom: -9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+
+.userdetails {
+  width: 70%;
+  background: white;
+  border-radius: 9px;
+  padding: 7px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.leftfollowers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly
+}
+
+.justcol {
+  display: flex;
+  flex-direction: row;
+}
+
 @media screen and (max-width:1015px) {
-  .right_container {
-    display: none;
+  .container1 {
+    width: 90%;
+    margin: auto;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 20px;
+
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
   }
 
   .left_container {
     width: 100%;
+    height: fit-content;
+    overflow-y: scroll;
+    border-radius: 12px;
   }
+
+  .right_container {
+    width: 100%;
+  }
+
+  .homehide {
+    display: none;
+  }
+
+  .filter {
+    width: 100%;
+  }
+
+  .searchbar {
+    width: 100%;
+  }
+
 }
+
 @media screen and (min-width:675px) {
   .bottomnav {
-   display: none;
+    display: none;
   }
-  .bottomnavbar{
+
+  .bottomnavbar {
     display: none;
   }
 }
+
 @media screen and (max-width:675px) {
+  .userdetails {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profilename {
+    margin-left: -45px;
+    margin-bottom: -2px;
+  }
+
+  .rightfollowbtn {
+    margin-right: 29px;
+  }
+
+  .leftfollowers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly
+  }
+
   .container {
     width: 95%;
+    display: flex;
+    flex-direction: column;
+    /* overflow: scroll; */
+  }
+
+  .container1 {
+    width: 95%;
+    margin: auto;
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 20px;
+
+  }
+
+  .App {
+    height: 92vh;
+    overflow: scroll;
   }
 
   .tags {
     display: none;
   }
-  body{
+
+  body {
     height: 100vh;
     overflow: hidden;
   }
@@ -121,3 +256,6 @@ body {
   }
 }
 
+@media screen and (max-width:490px) {
+
+}

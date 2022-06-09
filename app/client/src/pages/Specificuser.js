@@ -4,9 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from '../apicalls'
 import Listuser from '../components/Listuser'
 import Post from '../components/Post'
-import Tags from '../components/Tags'
+import Whotofollow from '../components/Whotofollow'
 
-export default function Specificuser() {
+export default function Specificuser(props) {
     const uid = useParams().uid
     const navigate = useNavigate()
     const [totalfollowers, settotalfollowers] = useState(0)
@@ -103,44 +103,46 @@ export default function Specificuser() {
                 <img style={{ width: '100%', height: '250px', objectFit: 'cover' }} src={profile?.coverimg} alt="" />
             </div>
             <div className="container" style={{ marginTop: '-79px' }}>
-                <div className="userdetails" style={{ background: 'white', borderRadius: '9px', padding: '12px', width: '100%', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <div className="container userdetails" style={{}}>
                     <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px' }}>
                         <img style={{ width: '128px', borderRadius: '9px' }} src={profile?.userimg} alt="" />
                     </div>
-                    <div className="rightDetails" style={{ width: '100%' }}>
+                    <div className="rightDetails" style={{ width: '100%', marginLeft: '20px'  }}>
                         <div className="namefoll" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }} >
-                            <div className="leftfolowers" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', width: '36%' }}>
-                                <h4 style={{}}>{profile?.username}</h4>
-                                <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Followings</p>
-                                <Dialog
-                                    open={open1}
-                                    onClose={handleClose1}
-                                    aria-labelledby="alert-dialog-title"
-                                    aria-describedby="alert-dialog-description"
-                                >
-                                    <DialogContent>
-                                        <DialogContentText id="alert-dialog-description">
-                                            Followings
-                                        </DialogContentText>
-                                        <Listuser uid={uid} following={true} text="Followings"  />
-                                        {/* <Following uid={uid}></Following> */}
-                                    </DialogContent>
-                                </Dialog>
-                                <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
-                                <Dialog
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="alert-dialog-title"
-                                    aria-describedby="alert-dialog-description"
-                                >
-                                    <DialogContent>
-                                        <DialogContentText id="alert-dialog-description">
-                                            Followers
-                                        </DialogContentText>
-                                        <Listuser uid={uid} followers={true} text="Followers"  />
-                                        {/* <Followers uid={uid}></Followers> */}
-                                    </DialogContent>
-                                </Dialog>
+                            <div className="leftfollowers" style={{}}>
+                                <h4 className='profilename' style={{ width: 'max-content', marginRight: '19px' }}>{profile?.username}</h4>
+                                <div className="follws justcol">
+                                    <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Followings</p>
+                                    <Dialog
+                                        open={open1}
+                                        onClose={handleClose1}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">
+                                                Followings
+                                            </DialogContentText>
+                                            <Listuser uid={uid} following={true} text="Followings" />
+                                            {/* <Following uid={uid}></Following> */}
+                                        </DialogContent>
+                                    </Dialog>
+                                    <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">
+                                                Followers
+                                            </DialogContentText>
+                                            <Listuser uid={uid} followers={true} text="Followers" />
+                                            {/* <Followers uid={uid}></Followers> */}
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
                             </div>
                             <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
                                 <button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>{
@@ -149,16 +151,16 @@ export default function Specificuser() {
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>
-                            <p style={{ fontSize: '12.85px', marginLeft: '35px', marginTop: '-2px' }}>{profile?.bio === "" ? "-" : profile?.bio}</p>
+                            <p style={{ fontSize: '12.85px', marginTop: '-2px' }}>{profile?.bio === "" ? "-" : profile?.bio}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="container">
-                <div className="right_container" style={{ marginLeft: '0' }}>
-                    <Tags marginleft="0px" />
+                <div className="right_container homehide" style={{ marginLeft: '0' }}>
+                    <Whotofollow uid={props.uid} mtop='0px' marginRight="20px" />
                 </div>
-                <div className="left_container" style={{ marginLeft: '20px' }}>
+                <div className="left_container" style={{ }}>
                     <div className="posts">
                         {
                             (posts.length !== 0) ?

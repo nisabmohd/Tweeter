@@ -51,7 +51,7 @@ export default function Profile(props) {
             </div>
             <div className="container" style={{ marginTop: '-79px' }}>
                 <div className="container userdetails" style={{}}>
-                    <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px' }}>
+                    <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px',marginLeft:'20px' }}>
                         <img style={{ width: '128px', borderRadius: '9px' }} src={profile?.userimg} alt="" />
                     </div>
                     <div className="rightDetails" style={{ width: '100%', marginLeft: '20px' }}>

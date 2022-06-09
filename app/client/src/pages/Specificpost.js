@@ -18,7 +18,7 @@ export default function Specificpost() {
       setPost(post)
     }
     getPost()
-  }, [])
+  }, [postid])
 
   return (
     <>

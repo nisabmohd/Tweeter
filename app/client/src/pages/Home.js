@@ -14,7 +14,7 @@ function Home(props) {
       setPosts(data);
     }
     gettimeline()
-  }, [])
+  }, [props.uid])
   return (
     <div className="container">
       <div className="left_container">

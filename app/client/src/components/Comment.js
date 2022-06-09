@@ -11,7 +11,7 @@ export default function Comment(props) {
             setuser(user)
         }
         getUserDetails()
-    },[])
+    },[props.uid])
     return (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
             <div className="user" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '15px' }}>

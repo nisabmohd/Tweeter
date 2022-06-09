@@ -27,7 +27,7 @@ export default function Explore(props) {
       setPosts(data)
     }
     getAll()
-  }, [])
+  }, [props.uid])
   const searchHandle = () => {
     if (categ === 'users') {
       fetch(`${baseurl}/user/search/find`, {

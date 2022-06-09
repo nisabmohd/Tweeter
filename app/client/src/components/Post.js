@@ -68,6 +68,7 @@ export default function Post(props) {
         const user = await result.json()
         setMe(user.saved)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     async function getUserDetails() {
         getme()
         const result = await fetch(`${baseurl}/user/${props.uid}`)
@@ -89,13 +90,13 @@ export default function Post(props) {
             setRetweeted(true)
         }
 
-    }, [])
+    }, [getUserDetails, props.likes, props.retweets])
     useEffect(() => {
         if (me != null)
             if (me.includes(props.postid)) {
                 setSaved(true)
             }
-    }, [me])
+    }, [me, props.postid])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {

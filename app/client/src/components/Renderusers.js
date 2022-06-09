@@ -12,7 +12,7 @@ export default function Renderusers(props) {
             setUser(data)
         }
         getprofile()
-    }, [])
+    }, [props.uid])
     return (
         <div>{
             user ? <Customcarduser width='370px' username={user.username} uid={user.uid} userimg={user.userimg} followers={user.followers} bio={user.bio} />: <></>

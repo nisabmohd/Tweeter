@@ -11,7 +11,7 @@ export default function Whotofollow(props) {
             setUsers(data)
         }
         getusers()
-    }, [])
+    }, [props.uid])
     return (
         users.length?<div style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: props.marginleft, marginTop: props.mtop,marginRight:props.marginRight }
         }>

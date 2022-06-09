@@ -40,7 +40,7 @@ export default function Profile(props) {
         }
         getprofile();
         getUserpost()
-    }, [])
+    }, [props.uid])
     useEffect(() => {
 
     }, [profile])

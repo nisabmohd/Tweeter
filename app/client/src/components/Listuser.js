@@ -27,7 +27,7 @@ export default function Listuser(props) {
     if (props.likes || props.retweet) {
       getPost()
     }
-  }, [])
+  }, [props.followers, props.following, props.likes, props.postid, props.retweet, props.uid])
   return (
     <>
       {

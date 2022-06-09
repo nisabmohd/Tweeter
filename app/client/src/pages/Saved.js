@@ -13,7 +13,7 @@ function Saved(props) {
       setSaved(data)
     }
     getposts()
-  },[])
+  },[props.uid])
   return (
     <div className="container">
       <div className="left_container">

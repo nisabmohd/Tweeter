@@ -97,7 +97,7 @@ export default function Post(props) {
             if (me.includes(props.postid)) {
                 setSaved(true)
             }
-    }, [me, props.postid])
+    }, [me])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {

@@ -4,6 +4,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(242, 242, 242);
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }
 
 .container {
@@ -13,7 +14,6 @@ body {
   padding-top: 25px;
   display: flex;
   flex-direction: row;
-
 }
 
 .container1 {
@@ -47,7 +47,7 @@ body {
 
 .right_container {
   width: 30%;
-  height: 88vh;
+  margin-bottom: 12px;
 }
 
 *::-webkit-scrollbar {
@@ -202,7 +202,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly
+    justify-content: space-evenly;
   }
 
   .container {
@@ -223,11 +223,11 @@ body {
   }
 
   .App {
-    height: 90.5vh;
+    height: 90.25vh;
     overflow: scroll;
     border-radius: 9px;
+    z-index:99
   }
-
   .tags {
     display: none;
   }

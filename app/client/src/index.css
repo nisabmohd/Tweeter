@@ -223,8 +223,9 @@ body {
   }
 
   .App {
-    height: 89vh;
+    height: 90.5vh;
     overflow: scroll;
+    border-radius: 9px;
   }
 
   .tags {

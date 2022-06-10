@@ -4,7 +4,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(242, 242, 242);
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  
 }
 
 .container {
@@ -223,7 +223,7 @@ body {
   }
 
   .App {
-    height: 90.25vh;
+    height: 89vh;
     overflow: scroll;
     border-radius: 9px;
     z-index:99

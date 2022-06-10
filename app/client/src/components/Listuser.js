@@ -1,3 +1,4 @@
+import { CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { baseurl } from '../apicalls'
 import Renderusers from './Renderusers'
@@ -33,7 +34,7 @@ export default function Listuser(props) {
       {
         users?.length !== 0 ?
           users?.map(item => <Renderusers profilefollowing={props.profilefollowing} foll={props.foll} key={item} specific={props.specific} uid={item} />)
-          : <></>
+          : <CircularProgress sx={{margin:'29px'}} />
       }
     </>
   )

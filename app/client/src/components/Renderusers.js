@@ -7,7 +7,7 @@ export default function Renderusers(props) {
     const [user, setUser] = useState(null)
     useEffect(() => {
         async function getprofile() {
-            const result = await fetch(`${baseurl}/user/${props.uid}`)
+            const result = await fetch(`${baseurl}/user/${props?.uid}`)
             const data = await result.json()
             setUser(data)
         }
@@ -15,7 +15,7 @@ export default function Renderusers(props) {
     }, [props.uid])
     return (
         <div>{
-            user ? <Customcarduser width='370px' username={user.username} uid={user.uid} userimg={user.userimg} followers={user.followers} bio={user.bio} />: <></>
+            user ? <Customcarduser width='370px' username={user.username} uid={user.uid} userimg={user.userimg} followers={user.followers} bio={user.bio} />:<></>
         }</div>
     )
 }

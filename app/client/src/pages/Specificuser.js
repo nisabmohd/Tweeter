@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { baseurl } from '../apicalls'
 import Listuser from '../components/Listuser'
 import Post from '../components/Post'
@@ -8,7 +8,6 @@ import Whotofollow from '../components/Whotofollow'
 
 export default function Specificuser(props) {
     const uid = useParams().uid
-    const navigate = useNavigate()
     const [totalfollowers, settotalfollowers] = useState(0)
     const [totalfollowings, settotalfollowings] = useState(0)
     const [profile, setProfile] = useState(null)
@@ -54,7 +53,7 @@ export default function Specificuser(props) {
         }
         getprofile();
         getUserpost();
-    }, [navigate, uid])
+    }, [uid])
     async function handlefollow() {
         if (doesfollow) {
             const data = {

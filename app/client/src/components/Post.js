@@ -82,8 +82,8 @@ export default function Post(props) {
             // console.log(user.saved);
 
         }
-        getUserDetails()
         getme()
+        getUserDetails()
         if (props.likes.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setLiked(true)
         }
@@ -91,7 +91,14 @@ export default function Post(props) {
             setRetweeted(true)
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    useEffect(() => {
+        if (me != null)
+            if (me.includes(props.postid)) {
+                setSaved(true)
+            }
+    }, [me, props.postid])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {

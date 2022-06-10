@@ -117,7 +117,7 @@ export default function Signup(props) {
             });
     }
     return (
-        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'9vh' }}>
+        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'5vh' }}>
             <Toaster />
             <div className="forms" style={{ }}>
                 <div className="header">

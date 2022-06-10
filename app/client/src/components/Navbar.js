@@ -52,7 +52,7 @@ function Navbar(props) {
                     }}
                     style={{ borderRadius: '9px' }}
                 >
-                    <MenuItem onClick={handleClose} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><Link style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }} to="/profile"><AccountCircleIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} /> Profile</Link></MenuItem>
+                    <MenuItem onClick={handleClose} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><Link style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }} to={`/user/${JSON.parse(localStorage.getItem('auth')).uid}`} ><AccountCircleIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} /> Profile</Link></MenuItem>
                     <MenuItem onClick={handleClose} style={{ fontSize: '12px', fontFamily: 'Poppins' }}><Link style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'row', alignItems: 'center' }} to="/edit"><SettingsIcon style={{ width: '18px', height: '18px', marginRight: '10px' }} /> My account</Link></MenuItem>
                     <MenuItem onClick={() => { handleClose(); logout() }} style={{ fontSize: '12px', fontFamily: 'Poppins' }} > <ExitToAppIcon color="error" style={{ width: '18px', height: '18px', marginRight: '10px' }} /> Logout</MenuItem>
                 </Menu>

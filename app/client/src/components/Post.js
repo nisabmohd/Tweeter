@@ -63,26 +63,27 @@ export default function Post(props) {
     };
 
 
-    async function getme() {
-        const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
-        const user = await result.json()
-        setMe(user.saved)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    async function getUserDetails() {
-        getme()
-        const result = await fetch(`${baseurl}/user/${props.uid}`)
-        const user = await result.json()
-        // console.log(user.saved);
-        setuser(user)
-        if (me?.includes(props.postid)) {
-            setSaved(true)
-        }
-        // console.log(user.saved);
 
-    }
     useEffect(() => {
+        async function getme() {
+            const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
+            const user = await result.json()
+            setMe(user.saved)
+        }
+        async function getUserDetails() {
+            
+            const result = await fetch(`${baseurl}/user/${props.uid}`)
+            const user = await result.json()
+            // console.log(user.saved);
+            setuser(user)
+            if (me?.includes(props.postid)) {
+                setSaved(true)
+            }
+            // console.log(user.saved);
+
+        }
         getUserDetails()
+        getme()
         if (props.likes.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setLiked(true)
         }
@@ -90,13 +91,7 @@ export default function Post(props) {
             setRetweeted(true)
         }
 
-    }, [getUserDetails, props.likes, props.retweets])
-    useEffect(() => {
-        if (me != null)
-            if (me.includes(props.postid)) {
-                setSaved(true)
-            }
-    }, [me, props.postid])
+    }, [])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {
@@ -293,7 +288,7 @@ export default function Post(props) {
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px',textDecoration:'none',marginBottom:'7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -309,7 +304,7 @@ export default function Post(props) {
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px',textDecoration:'none',marginBottom:'7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -355,7 +350,7 @@ export default function Post(props) {
                         {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
                     </DialogContent>
                 </Dialog>
-                <Link to={`/post/${props.postid}`} style={{textDecoration:'none',color:'inherit'}}><p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p></Link>
+                <Link to={`/post/${props.postid}`} style={{ textDecoration: 'none', color: 'inherit' }}><p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p></Link>
             </div>
             <div className="actionbuttons" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', margin: 'auto', marginTop: '6px' }}>
                 <Button onClick={handleClickOpen1} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>

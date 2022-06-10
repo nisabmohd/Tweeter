@@ -16,7 +16,7 @@ export default function Customcarduser(props) {
             }
         }
         getme()
-    }, [me, props.uid])
+    }, [])
     async function handlefollow() {
         if (doesfollow) {
             const data = {

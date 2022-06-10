@@ -8,7 +8,6 @@ import {
 import Home from './pages/Home';
 import Explore from './pages/Explore'
 import Saved from './pages/Saved'
-import Profile from './pages/Profile';
 import Account from './pages/Account';
 import { useEffect, useState } from 'react';
 import Login from './pages/Login';
@@ -82,7 +81,6 @@ function App() {
                 <Route path="/" element={<Home uid={uid} userimg={userimg}></Home>} />
                 <Route path="/explore" element={<Explore uid={uid} />} />
                 <Route path="/saved" element={<Saved uid={uid} />} />
-                <Route path="/profile" element={<Profile uid={uid} />} />
                 <Route path="/search/:hashtag" element={<Specifichashtag />} />
                 <Route path="/edit" element={<Account setuid={setUid} height="75vh" btntext="Save" passwordtxt="Change Password" htext="Edit profile" />} />
                 <Route path="/post/:postid" element={<Specificpost />} />

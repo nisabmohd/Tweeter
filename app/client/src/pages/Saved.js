@@ -11,6 +11,7 @@ function Saved(props) {
       const res=await fetch(`${baseurl}/post/saved/${props.uid}`)
       const data=await res.json()
       setSaved(data)
+      return;
     }
     getposts()
   },[props.uid])

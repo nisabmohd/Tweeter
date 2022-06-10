@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogContentText } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { baseurl } from '../apicalls'
 import Listuser from '../components/Listuser'
 import Post from '../components/Post'
@@ -16,6 +16,7 @@ export default function Specificuser(props) {
     const [posts, setPosts] = useState([])
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
+    const [ad,setAd]=useState(false)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -32,7 +33,7 @@ export default function Specificuser(props) {
     };
     useEffect(() => {
         if (uid === (JSON.parse(localStorage.getItem('auth')).uid)) {
-            return navigate('/profile')
+            setAd(true)
         }
         setOpen1(false)
         setOpen(false)
@@ -144,10 +145,12 @@ export default function Specificuser(props) {
                                     </Dialog>
                                 </div>
                             </div>
-                            <div className="rightfollowbtn" style={{ marginRight: '19px' }}>
-                                <button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>{
+                            <div className="rightfollowbtn" style={{ marginRight: '19px' }}>{
+                                ad?<><Link to={`/edit`} style={{ textDecoration: 'none', color: 'inherit' }}><button style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>Edit</button></Link></>:<button onClick={() => handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginTop: '-13px' }}>{
                                     doesfollow ? "Unfollow" : "Follow"
                                 }</button>
+                            }
+                                
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>

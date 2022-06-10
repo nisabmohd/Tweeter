@@ -26,24 +26,23 @@ export default function Profile(props) {
     const handleClose1 = () => {
         setOpen1(false);
     };
+    async function getprofile() {
+        const result = await fetch(`${baseurl}/user/${props.uid}`)
+        const data = await result.json()
+        console.log(data);
+        setProfile(data)
+        setMyfollowing(data.following.length)
+        await Promise.all(getUserpost())
+    }
+    async function getUserpost() {
+        const result = await fetch(`${baseurl}/post/up/${props.uid}`)
+        const data = await result.json()
+        setPosts(data)
+    }
     useEffect(() => {
-        async function getprofile() {
-            const result = await fetch(`${baseurl}/user/${props.uid}`)
-            const data = await result.json()
-            setProfile(data)
-            setMyfollowing(data.following.length)
-        }
-        async function getUserpost() {
-            const result = await fetch(`${baseurl}/post/up/${props.uid}`)
-            const data = await result.json()
-            setPosts(data)
-        }
         getprofile();
-        getUserpost()
-    }, [props.uid])
-    useEffect(() => {
-
-    }, [profile])
+       
+    }, [])
     return (
         <div className='profile'>
             <div className="coverimage">
@@ -51,7 +50,7 @@ export default function Profile(props) {
             </div>
             <div className="container" style={{ marginTop: '-79px' }}>
                 <div className="container userdetails" style={{}}>
-                    <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px',marginLeft:'20px' }}>
+                    <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px', marginLeft: '20px' }}>
                         <img style={{ width: '128px', borderRadius: '9px' }} src={profile?.userimg} alt="" />
                     </div>
                     <div className="rightDetails" style={{ width: '100%', marginLeft: '20px' }}>

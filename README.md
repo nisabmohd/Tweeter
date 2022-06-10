@@ -28,7 +28,9 @@
 <img src="./images/5.png" />
 <img src="./images/3.png" />
 
-
+<p align="center">
+<img width="220px" style="margin-right:29px;" src="./images/phone.jpg" />
+<img width="220px" src="./images/phone1.jpg" />
 
 ### Built With
 

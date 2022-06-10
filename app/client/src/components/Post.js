@@ -91,7 +91,6 @@ export default function Post(props) {
             setRetweeted(true)
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
         if (me != null)

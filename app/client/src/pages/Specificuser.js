@@ -31,6 +31,7 @@ export default function Specificuser(props) {
         setOpen1(false);
     };
     useEffect(() => {
+        setAd(false)
         if (uid === (JSON.parse(localStorage.getItem('auth')).uid)) {
             setAd(true)
         }

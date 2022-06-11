@@ -27,7 +27,6 @@ export default function Post(props) {
     const [retweetCount, setretweetCount] = useState(props.retweets.length)
     const [commentText, setCommentText] = useState('')
     const [open1, setOpen1] = React.useState(false);
-    const [me, setMe] = useState(null)
 
     const handleClickOpen1 = () => {
         setOpen1(true);
@@ -65,24 +64,11 @@ export default function Post(props) {
 
 
     useEffect(() => {
-        async function getme() {
-            const result = await fetch(`${baseurl}/user/${JSON.parse(localStorage.getItem('auth')).uid}`)
-            const user = await result.json()
-            setMe(user.saved)
-        }
         async function getUserDetails() {
-            
             const result = await fetch(`${baseurl}/user/${props.uid}`)
             const user = await result.json()
-            // console.log(user.saved);
             setuser(user)
-            if (me?.includes(props.postid)) {
-                setSaved(true)
-            }
-            // console.log(user.saved);
-
         }
-        getme()
         getUserDetails()
         if (props.likes.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setLiked(true)
@@ -90,14 +76,11 @@ export default function Post(props) {
         if (props.retweets.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
             setRetweeted(true)
         }
+        if (props.saved.includes(JSON.parse(localStorage.getItem('auth')).uid)) {
+            setSaved(true)
+        }
 
     }, [])
-    useEffect(() => {
-        if (me != null)
-            if (me.includes(props.postid)) {
-                setSaved(true)
-            }
-    }, [me])
     async function handleLike() {
         if (liked) {
             const res = await fetch(`${baseurl}/post/unlike/${props.postid}`, {
@@ -186,7 +169,7 @@ export default function Post(props) {
     async function handleSave() {
         if (!saved) {
             const data = {
-                post_id: props.postid
+                postid: props.postid
             }
             fetch(`${baseurl}/post/addsaved/${JSON.parse(localStorage.getItem('auth')).uid}`, {
                 method: 'PUT',
@@ -204,7 +187,7 @@ export default function Post(props) {
                 });
         } else {
             const data = {
-                post_id: props.postid
+                postid: props.postid
             }
             fetch(`${baseurl}/post/undosaved/${JSON.parse(localStorage.getItem('auth')).uid}`, {
                 method: 'PUT',

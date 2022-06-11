@@ -75,7 +75,11 @@ router.get('/up/:uid', async (req, res) => {
     try {
         const post = await postModel.find({ uid: req.params.uid }).sort({ timestamp: -1 });
         const retweetedpost = await postModel.find({ retweet: req.params.uid })
-        res.status(200).send(post.concat(...retweetedpost))
+        post.push(...retweetedpost)
+        const tempresarr=post.sort(function (a, b) {
+            return b.timestamp - a.timestamp;
+        });
+        res.status(200).send(tempresarr)
 
     } catch (err) {
         res.status(500).send(err)
@@ -143,7 +147,7 @@ router.put('/unlike/:postid', async (req, res) => {
 //comment
 router.put('/comment/:postid', async (req, res) => {
     try {
-        const result = await postModel.updateOne({ post_id: req.params.postid }, { $push: { comments: { uid: req.body.uid, comment: req.body.comment } } })
+        const result = await postModel.updateOne({ post_id: req.params.postid }, { $push: { comments: { uid: req.body.uid, comment: req.body.comment ,timestamp:new Date()} } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -178,7 +182,7 @@ router.put('/undoretweet/:postid', async (req, res) => {
 //save a post in user
 router.put('/addsaved/:uid', async (req, res) => {
     try {
-        const result = await signUpModel.updateOne({ uid: req.params.uid }, { $push: { saved: req.body.post_id } })
+        const result = await postModel.updateOne({ post_id: req.body.postid }, { $push: { saved: req.params.uid } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -191,7 +195,7 @@ router.put('/addsaved/:uid', async (req, res) => {
 //undo save
 router.put('/undosaved/:uid', async (req, res) => {
     try {
-        const result = await signUpModel.updateOne({ uid: req.params.uid }, { $pull: { saved: req.body.post_id } })
+        const result = await postModel.updateOne({ post_id: req.body.postid }, { $pull: { saved: req.params.uid } })
         res.send(result)
     } catch (err) {
         res.status(400).send(err)
@@ -204,16 +208,10 @@ router.put('/undosaved/:uid', async (req, res) => {
 //get saved post of user
 router.get('/saved/:uid', async (req, res) => {
     try {
-        const getAllSaveduid = await signUpModel.findOne({ uid: req.params.uid }).sort({ timestamp: 1 })
-        const saveduidarr = getAllSaveduid.saved
-        var post = []
-        await Promise.all(saveduidarr.map(async element => {
-            const temppost = await postModel.find({ post_id: element })
-            post.push(...temppost)
-        }))
-        res.send(post)
+        const result = await postModel.find({ saved: req.params.uid })
+        res.status(200).send(result)
     } catch (err) {
-        res.status(400).send(err)
+        res.status(400).send("err")
     }
 })
 
@@ -230,10 +228,14 @@ router.get('/timeline/:uid', async (req, res) => {
         var follwingpost = []
         await Promise.all(followingarr.map(async item => {
             const temppost = await postModel.find({ uid: item })
-            // console.log(temppost);
             follwingpost.push(...temppost)
         }))
-        res.send(follwingpost.concat(...mypost))
+        follwingpost.push(...mypost)
+        const tempresarr=follwingpost.sort(function (a, b) {
+            return b.timestamp - a.timestamp;
+        });
+        
+        res.send(tempresarr)
     } catch (err) {
         res.status(400).send(err)
     }
@@ -253,7 +255,10 @@ router.get('/hashtag/:tag', async (req, res) => {
 router.get('/comments/:postid', async (req, res) => {
     try {
         const result = await postModel.findOne({ post_id: req.params.postid })
-        res.status(200).send(result.comments)
+        const tempresarr=result.comments.sort(function (a, b) {
+            return b.timestamp - a.timestamp;
+        });
+        res.status(200).send(tempresarr)
     } catch (err) {
         res.status(400).send(err)
     }

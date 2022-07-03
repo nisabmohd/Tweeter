@@ -2,11 +2,11 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(242, 242, 242);
+  background-color: #F6F8FB;
+
   font-family: 'Poppins', sans-serif;
   
 }
-
 .container {
   width: 70%;
   /* height:89vh; */

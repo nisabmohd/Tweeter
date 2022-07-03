@@ -245,13 +245,13 @@ export default function Post(props) {
             <div className='post' style={{ padding: '12px', backgroundColor: 'white', borderRadius: '9px', position: 'relative', paddingBottom: '5.5px' }}>
                 <div className="userheader">
                     <div className="user" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '15px' }}>
-                        <Link to={`/user/${user?.uid}`} style={{ marginLeft: '2%' }}><img style={{ width: '32px', borderRadius: '9px' }} src={user?.userimg} alt="" /></Link>
+                        <Link to={`/user/${user?.uid}`} style={{ marginLeft: '2%' }}><img style={{ width: '34px', borderRadius: '9px' }} src={user?.userimg} alt="" /></Link>
                         <div className="timeuser" style={{ display: 'flex', flexDirection: 'column', }}>
-                            <h6 style={{ fontSize: '12px', margin: '0', marginLeft: '12px', width: 'fit-content' }}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{user?.username}</Link></h6>
-                            <p style={{ fontSize: '9px', margin: '0', marginLeft: '12px' }}>{props.date}</p>
+                            <h6 style={{ fontSize: '12.25px', margin: '0', marginLeft: '12px', width: 'fit-content' }}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{user?.username}</Link></h6>
+                            <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px' }}>{props.date}</p>
                         </div>
                     </div>
-                    <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19px' }} />
+                    <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19.5px' }} />
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -273,11 +273,11 @@ export default function Post(props) {
                 {
                     (props.noturl) ? <div style={{ textDecoration: 'none', color: 'inherit' }} >
                         <div className="captions">
-                            <p style={{ fontSize: '11.5px', marginLeft: '2%' }}>{props.caption}</p>
+                            <p style={{ fontSize: '12.75px', marginLeft: '2%' }}>{props.caption}</p>
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -289,11 +289,11 @@ export default function Post(props) {
                         </div>
                     </div> : <Link to={`/post/${props.postid}`} style={{ textDecoration: 'none', color: 'inherit' }} >
                         <div className="captions">
-                            <p style={{ fontSize: '11.5px', marginLeft: '2%' }}>{props.caption}</p>
+                            <p style={{ fontSize: '12.75px', marginLeft: '2%' }}>{props.caption}</p>
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '11.5px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>

@@ -98,10 +98,10 @@ export default function Newtweet(props) {
         <div className='newtweet' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column',marginBottom:'-19px' }}>
             <Toaster />
             <div className="header" style={{ borderBottom: '1px solid #E0E0E0', width: '96.25%', margin: 'auto' }}>
-                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', }}>Tweet Something</h6>
+                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12.55px', }}>Tweet Something</h6>
             </div>
             <div className="writetweet" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '9px' }}>
-                <img style={{ width: '32px', borderRadius: '9px', marginLeft: '2%' }} src={props.userimg} alt="" />
+                <img style={{ width: '34px', borderRadius: '9px', marginLeft: '2%' }} src={props.userimg} alt="" />
                 <input type="text" style={{ height: '49px', width: '88%', marginLeft: '9px', outline: 'none', border: 'none', fontFamily: 'Poppins' }} placeholder="Whats's Happening" value={tweet} onChange={e => settweet(e.target.value)} />
             </div>
             <div className="btns" style={{ marginTop: "15px", marginBottom: '15px', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>

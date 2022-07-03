@@ -24,8 +24,8 @@ router.get('/random/:uid', async (req, res) => {
                 suggestarr.push(elem)
             }
         })
-        if(suggestarr.length>2){
-            return res.send(suggestarr.slice(0,2))
+        if(suggestarr.length>3){
+            return res.send(suggestarr.slice(0,3))
         }
         res.send(suggestarr)
     } catch (err) {

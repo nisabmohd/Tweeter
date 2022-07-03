@@ -268,8 +268,8 @@ router.get('/comments/:postid', async (req, res) => {
 router.get('/top/hashtag', async (req, res) => {
     try {
         const result = await hashtagModel.find().sort({ count: -1 })
-        if (result.length > 4) {
-            return res.send(result.slice(0, 4))
+        if (result.length > 5) {
+            return res.send(result.slice(0, 5))
         }
         else res.send(result)
     } catch (err) {

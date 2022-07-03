@@ -52,11 +52,11 @@ export default function Peoplecard(props) {
         <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid #E0E0E0', marginLeft: '9px' }}>
             <div className="header" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '19px' }}>
                 <div className="userimg">
-                    <Link to={`/user/${props.uid}`}><img style={{ width: '32px', borderRadius: '9px', marginLeft: '2.8%' }} src={props.userimg} alt="" /></Link>
+                    <Link to={`/user/${props.uid}`}><img style={{ width: '32px', borderRadius: '9px', marginLeft: '2.8%',marginTop:'-5px' }} src={props.userimg} alt="" /></Link>
                 </div>
                 <div className="username">
-                    <h6 style={{ marginLeft: '9px', marginTop: '-0px' }}><Link to={`/user/${props.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.username}</Link></h6>
-                    <p style={{ fontSize: '9px', marginTop: '-25px', marginLeft: '9px', color: '#828282' }}>{props.followers.length} followers</p>
+                    <h6 style={{ marginLeft: '9px', marginTop: '-0px',fontSize:'11.45px' }}><Link to={`/user/${props.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.username}</Link></h6>
+                    <p style={{ fontSize: '9.89px', marginTop: '-25px', marginLeft: '9px', color: '#828282' }}>{props.followers.length} followers</p>
                 </div>
                 <button onClick={()=>handlefollow()} style={{ backgroundColor: '#2F80ED', color: 'white', border: 'none', outline: 'none', height: '27px', width: '70px', cursor: 'pointer', borderRadius: '4px', fontFamily: 'Poppins', fontSize: '12px', marginLeft: 'auto', marginTop: '-13px' }}>{
                     doesfollow ? "Unfollow" : "Follow"

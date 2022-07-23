@@ -81,7 +81,7 @@ export default function Customcarduser(props) {
                         <Link to={`/user/${props.uid}`}><img style={{ width: '32px', borderRadius: '9px', marginLeft: '2.8%' }} src={props.userimg} alt="" /></Link>
                     </div>
                     <div className="username">
-                        <h6 style={{ marginLeft: '9px', marginTop: '-0px' }}><Link to={`/user/${props.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.username}</Link></h6>
+                        <h6 style={{ marginLeft: '9px', marginTop: '-0px',color:'#dadada' }}><Link to={`/user/${props.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.username}</Link></h6>
                         <p style={{ fontSize: '9px', marginTop: '-25px', marginLeft: '9px', color: 'white' }}>{props.followers.length} followers</p>
                     </div>
                     {
@@ -96,7 +96,7 @@ export default function Customcarduser(props) {
                     }
                 </div>
                 <div className="bio">
-                    <p style={{ fontSize: "11.25px", marginTop: '2px', marginLeft: '2px' }}>{props.bio.length > 52 ? props.bio.slice(0, 52) + "..." : props.bio}</p>
+                    <p style={{ fontSize: "11.25px", marginTop: '2px', marginLeft: '2px',color:'white' }}>{props.bio.length > 52 ? props.bio.slice(0, 52) + "..." : props.bio}</p>
                 </div>
             </div>
         }

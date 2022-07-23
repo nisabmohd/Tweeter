@@ -82,7 +82,7 @@ export default function Explore(props) {
         </div>
         <div className="searchbar" style={{  }}>
           <input value={searchtext} onChange={e => setSearchtext(e.target.value)} type="text" style={{ height: '85%', width: '88%', outline: 'none', border: 'none', fontFamily: 'Poppins',paddingLeft:'15px' ,backgroundColor:'transparent' ,color:'white'}} placeholder="Search ..." />
-          <SearchIcon onClick={e => searchHandle()} style={{ fontSize: '19px', cursor: 'pointer',}} />
+          <SearchIcon onClick={e => searchHandle()} style={{ fontSize: '19px', cursor: 'pointer',color:'white'}} />
         </div>
       </div>
       <div className="container ">
@@ -96,8 +96,8 @@ export default function Explore(props) {
               serachres?.length === 0 ?
                 posts.map(item => {
                   return <Post saved={item.saved} likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
-                }) : <div style={{ backgroundColor: 'white', borderRadius: '9px', padding: '15px' }}><div className="header" style={{ width: '96.25%', margin: 'auto' }}>
-                  <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', marginLeft: '-9px' }}>Search Results</h6>
+                }) : <div style={{ backgroundColor: 'rgb(33 35 36)', borderRadius: '9px', padding: '15px' }}><div className="header" style={{ width: '96.25%', margin: 'auto' }}>
+                  <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12px', marginLeft: '-9px',color:'#dadada'}}>Search Results</h6>
                 </div>{serachres?.map(item => <Customcarduser width="99%" key={item._id} username={item.username} uid={item.uid} userimg={item.userimg} followers={item.followers} bio={item.bio} />)}</div>
 
             }

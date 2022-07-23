@@ -1,10 +1,10 @@
-import { CircularProgress } from '@mui/material'
+// import { CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { baseurl } from '../apicalls'
 import Renderusers from './Renderusers'
 
 export default function Listuser(props) {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState(null)
   useEffect(() => {
     async function getprofile() {
       const result1 = await fetch(`${baseurl}/user/${props.uid}`)
@@ -32,9 +32,9 @@ export default function Listuser(props) {
   return (
     <>
       {
-        users?.length !== 0 ?
+        users? 
           users?.map(item => <Renderusers profilefollowing={props.profilefollowing} foll={props.foll} key={item} specific={props.specific} uid={item} />)
-          : users.length===0?<><p style={{ fontSize: '13px',color:'white' }}>Nothing to see here</p></>:<CircularProgress sx={{margin:'29px'}} />
+          :<><p style={{ fontSize: '13px',color:'white' }}>Ohh Snap</p></>
       }
     </>
   )

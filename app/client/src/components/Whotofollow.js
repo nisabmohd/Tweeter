@@ -13,10 +13,10 @@ export default function Whotofollow(props) {
         getusers()
     }, [props.uid])
     return (
-        users.length?<div style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: props.marginleft, marginTop: props.mtop,marginRight:props.marginRight }
+        users.length?<div style={{ backgroundColor: 'rgb(33 35 36)', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column', marginLeft: props.marginleft, marginTop: props.mtop,marginRight:props.marginRight }
         }>
             <div className="header" style={{ width: '96.25%', margin: 'auto' }}>
-                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12.55px', }}>Who to follow</h6>
+                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12.55px',color:'rgb(218, 218, 218)' }}>Who to follow</h6>
             </div>
             {
                 users.map(item => {

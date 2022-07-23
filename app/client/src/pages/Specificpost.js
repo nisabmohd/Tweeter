@@ -28,11 +28,11 @@ export default function Specificpost() {
         }
 
       </div>
-      <div className="container" style={{ marginTop: '9px', marginBottom: '15px', backgroundColor: 'white', borderRadius: '9px', display: 'flex', flexDirection: 'column' }}>
-        <h5 style={{ marginLeft: '15px', marginTop: '2px', marginBottom: '2px' }}>Comments</h5>
+      <div className="container" style={{ marginTop: '9px', marginBottom: '15px', borderRadius: '9px', display: 'flex', flexDirection: 'column',backgroundColor:'rgb(33 35 36)'  }}>
+        <h5 style={{ marginLeft: '15px', marginTop: '2px', marginBottom: '2px',color:'#dadada'  }}>Comments</h5>
         <div className="comments" style={{ marginTop: '8px', marginBottom: '12px' }}>
           {
-            comments.length === 0 ? <><p style={{ fontSize: '11px', marginLeft: '17px' }}>No comments to see</p></> : <>
+            comments.length === 0 ? <><p style={{ fontSize: '11px', marginLeft: '17px',color:'white' }}>No comments to see</p></> : <>
               {
                 comments.map(item => {
                   return <Comment key={item.uid} uid={item.uid} comment={item.comment} />

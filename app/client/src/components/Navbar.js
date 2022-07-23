@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/tweeter.svg'
+import logo from '../assets/tweeter-light.svg'
 import '../App.css'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link, NavLink } from "react-router-dom";
@@ -25,7 +25,7 @@ function Navbar(props) {
     }
     return (
 
-        <div className='navbar' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '64px', backgroundColor: 'white' }}>
+        <div className='navbar' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '64px', backgroundColor: 'rgb(33 35 36)' }}>
             <div className="logo" style={{ width: "30%" }}>
                 <img src={logo} alt="" style={{ marginLeft: "2.5vw", width: '109px' }} />
             </div>
@@ -36,12 +36,12 @@ function Navbar(props) {
             </div>
             <div className="user" style={{ width: "30%", display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <img style={{ width: '32px', borderRadius: '9px', marginLeft: 'auto' }} src={props.userimg} alt="" />
-                <p className='parahide' onClick={handleClick} style={{ color: '#828282', fontWeight: '600', marginLeft: '19px', fontSize: '12.5px', cursor: 'pointer' }}>
+                <p className='parahide' onClick={handleClick} style={{ color: '#dadada', fontWeight: '600', marginLeft: '19px', fontSize: '13.25px', cursor: 'pointer' }}>
                     {
                         props.username
                     }
                 </p>
-                <ArrowDropDownIcon onClick={handleClick} style={{ marginRight: '2.5vw', marginLeft: "10px", marginBottom: '-2px', cursor: 'pointer' }} color="disabled" />
+                <ArrowDropDownIcon onClick={handleClick} style={{ marginRight: '2.5vw', marginLeft: "10px", marginBottom: '-2px', cursor: 'pointer',color:'white' }}  />
                 <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}

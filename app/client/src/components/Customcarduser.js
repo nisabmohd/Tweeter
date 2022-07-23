@@ -75,14 +75,14 @@ export default function Customcarduser(props) {
                         <Skeleton variant="text" />
                     </div>
                 </div>
-            </> : <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid #E0E0E0', marginLeft: '0px', width: props.width, marginTop: '10px' }}>
+            </> : <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid rgb(88 88 88)', marginLeft: '0px', width: props.width, marginTop: '10px' }}>
                 <div className="header" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '19px' }}>
                     <div className="userimg">
                         <Link to={`/user/${props.uid}`}><img style={{ width: '32px', borderRadius: '9px', marginLeft: '2.8%' }} src={props.userimg} alt="" /></Link>
                     </div>
                     <div className="username">
                         <h6 style={{ marginLeft: '9px', marginTop: '-0px' }}><Link to={`/user/${props.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{props.username}</Link></h6>
-                        <p style={{ fontSize: '9px', marginTop: '-25px', marginLeft: '9px', color: '#828282' }}>{props.followers.length} followers</p>
+                        <p style={{ fontSize: '9px', marginTop: '-25px', marginLeft: '9px', color: 'white' }}>{props.followers.length} followers</p>
                     </div>
                     {
                         // (props.uid === JSON.parse(localStorage.getItem('auth')).uid) ? "" :

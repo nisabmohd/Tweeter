@@ -105,7 +105,7 @@ export default function Specificuser(props) {
             </div>
             <div className="container" style={{ marginTop: '-79px' }}>
                 <div className="container userdetails" style={{}}>
-                    <div className="leftimg" style={{ background: 'white', padding: '1.8px', marginTop: '-69px', borderRadius: '9px' ,marginLeft:'20px' }}>
+                    <div className="leftimg" style={{ background: 'rgb(33 35 36)', padding: '1.8px', marginTop: '-69px', borderRadius: '9px' ,marginLeft:'20px' }}>
                         <img style={{ width: '128px', borderRadius: '9px' }} src={profile?.userimg} alt="" />
                     </div>
                     <div className="rightDetails" style={{ width: '100%', marginLeft: '20px'  }}>
@@ -113,7 +113,7 @@ export default function Specificuser(props) {
                             <div className="leftfollowers" style={{}}>
                                 <h4 className='profilename' style={{ width: 'max-content', marginRight: '19px' }}>{profile?.username}</h4>
                                 <div className="follws justcol">
-                                    <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowings}</span> Followings</p>
+                                    <p onClick={handleClickOpen1} style={{ fontSize: '11.785px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'rgb(218, 218, 218)', fontWeight: 'bold' }}>{totalfollowings}</span> Followings</p>
                                     <Dialog
                                         open={open1}
                                         onClose={handleClose1}
@@ -128,7 +128,7 @@ export default function Specificuser(props) {
                                             {/* <Following uid={uid}></Following> */}
                                         </DialogContent>
                                     </Dialog>
-                                    <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'black', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
+                                    <p onClick={handleClickOpen} style={{ fontSize: '11.985px', cursor: 'pointer', marginRight: '12px' }}><span style={{ color: 'rgb(218, 218, 218)', fontWeight: 'bold' }}>{totalfollowers}</span> Followers</p>
                                     <Dialog
                                         open={open}
                                         onClose={handleClose}
@@ -154,7 +154,7 @@ export default function Specificuser(props) {
                             </div>
                         </div>
                         <div className="caption" style={{ width: '98%' }}>
-                            <p style={{ fontSize: '12.85px', marginTop: '-2px' }}>{profile?.bio === "" ? "-" : profile?.bio}</p>
+                            <p style={{ fontSize: '12.85px', marginTop: '-2px',color:'white' }}>{profile?.bio === "" ? "-" : profile?.bio}</p>
                         </div>
                     </div>
                 </div>

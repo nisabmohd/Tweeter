@@ -66,7 +66,7 @@ export default function Explore(props) {
         <div className="filter" style={{ }}>
           <FormControl sx={{ width: '93%', height: '100%', border: 'none', outline: 'none', marginBottom: '0px', fontSize: '12px', marginLeft: '17px' }}>
             <Select disableUnderline
-              sx={{ fontSize: '14px', fontFamily: 'Poppins', border: 'none', outline: 'none', height: 'inherit' }}
+              sx={{ fontSize: '14px', fontFamily: 'Poppins', border: 'none', outline: 'none', height: 'inherit',color:'#dadada' }}
               value={categ}
               variant="standard"
               onChange={handleChange}
@@ -81,8 +81,8 @@ export default function Explore(props) {
           </FormControl>
         </div>
         <div className="searchbar" style={{  }}>
-          <input value={searchtext} onChange={e => setSearchtext(e.target.value)} type="text" style={{ height: '85%', width: '88%', outline: 'none', border: 'none', fontFamily: 'Poppins',paddingLeft:'15px' }} placeholder="Search ..." />
-          <SearchIcon onClick={e => searchHandle()} style={{ fontSize: '19px', cursor: 'pointer' }} />
+          <input value={searchtext} onChange={e => setSearchtext(e.target.value)} type="text" style={{ height: '85%', width: '88%', outline: 'none', border: 'none', fontFamily: 'Poppins',paddingLeft:'15px' ,backgroundColor:'transparent' ,color:'white'}} placeholder="Search ..." />
+          <SearchIcon onClick={e => searchHandle()} style={{ fontSize: '19px', cursor: 'pointer',}} />
         </div>
       </div>
       <div className="container ">

@@ -95,26 +95,26 @@ export default function Newtweet(props) {
     };
 
     return (
-        <div className='newtweet' style={{ backgroundColor: 'white', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column',marginBottom:'-19px' }}>
+        <div className='newtweet' style={{ backgroundColor: 'rgb(33 35 36)', padding: '11px', borderRadius: '9px', display: 'flex', flexDirection: 'column',marginBottom:'-19px' }}>
             <Toaster />
-            <div className="header" style={{ borderBottom: '1px solid #E0E0E0', width: '96.25%', margin: 'auto' }}>
-                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12.55px', }}>Tweet Something</h6>
+            <div className="header" style={{ borderBottom: '1px solid #383636', width: '96.25%', margin: 'auto' }}>
+                <h6 style={{ margin: '8px', marginTop: '4px', marginBottom: '8px', fontSize: '12.55px',color:'rgb(218, 218, 218)' }}>Tweet Something</h6>
             </div>
             <div className="writetweet" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '9px' }}>
                 <img style={{ width: '34px', borderRadius: '9px', marginLeft: '2%' }} src={props.userimg} alt="" />
-                <input type="text" style={{ height: '49px', width: '88%', marginLeft: '9px', outline: 'none', border: 'none', fontFamily: 'Poppins' }} placeholder="Whats's Happening" value={tweet} onChange={e => settweet(e.target.value)} />
+                <input type="text" style={{ height: '49px', width: '88%', marginLeft: '9px', outline: 'none', border: 'none', fontFamily: 'Poppins',backgroundColor:'transparent',color:'white' }} placeholder="Whats's Happening" value={tweet} onChange={e => settweet(e.target.value)} />
             </div>
             <div className="btns" style={{ marginTop: "15px", marginBottom: '15px', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <input type="file" id="imagein" onChange={(e) => handleUpload(e)} hidden />
                 <label htmlFor="imagein">
-                    <div className="imgico hoverbtn" style={{ marginLeft: '2%', display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '-5px', fontFamily: 'Poppins', width: 'fit-content', cursor: 'pointer', padding: '0.2px 9px', borderRadius: '6px' }}>
+                    <div className="imgico hoverbtn" style={{ marginLeft: '2.35%', display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '-5px', fontFamily: 'Poppins', width: 'fit-content', cursor: 'pointer', padding: '0.2px 9px', borderRadius: '6px' }}>
                         <ImageIcon color="primary" style={{ cursor: 'pointer', width: '22px' }} />
-                        <p style={{ fontSize: '12px', marginLeft: "5px", color: '#828282', widht: '275px' }}>Image</p>
+                        <p style={{ fontSize: '12px', marginLeft: "5px", widht: '275px',color:'rgb(218, 218, 218)' }}>Image</p>
                     </div>
                 </label>
                 <div className="imgico hoverbtn" style={{ marginLeft: '2%', display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '-5px', fontFamily: 'Poppins', cursor: 'pointer', padding: '0.2px 9px', borderRadius: '6px', }} onClick={handleClickOpen}>
                     <TagIcon color="primary" style={{ cursor: 'pointer', width: '22px' }} />
-                    <p style={{ fontSize: '12px', marginLeft: "5px", color: '#828282' }}>Hashtag</p>
+                    <p style={{ fontSize: '12px', marginLeft: "5px", color: 'rgb(218, 218, 218)' }}>Hashtag</p>
                 </div>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogContent>

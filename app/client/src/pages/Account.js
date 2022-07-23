@@ -126,20 +126,20 @@ function Account(props) {
             });
     }
     return (
-        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'white', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'3vh' }}>
+        <div className="" style={{borderRadius: '9px', padding: '29px', backgroundColor: 'rgb(33 35 36)', height: 'fit-content',paddingTop:'35px',paddingBottom:'25px',width:'fit-content',margin:'auto',marginTop:'3vh' }}>
             <div className="forms" style={{ margin: 'auto',marginTop:'25px',marginBottom:'19px' }}>
                 <div className="header">
-                    <h3 style={{ marginTop: '-35px', marginBottom: '35px' }}>{props.htext}</h3>
+                    <h3 style={{ marginTop: '-35px', marginBottom: '35px',color:'#dadada' }}>{props.htext}</h3>
                 </div>
                 <input onChange={e => handleUpload(e)} type="file" name="" id="imgup" hidden />
                 <label htmlFor="imgup">
                     <div className="image" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', cursor: 'pointer' }}>
                         <img style={{ width: '45px', borderRadius: '9px', marginRight: '9px' }} src={image} alt="" />
-                        <p style={{ fontSize: "13.5px" }}>Change Photo</p>
+                        <p style={{ fontSize: "13.5px",color:'#dadada' }}>Change Photo</p>
                     </div>
                 </label>
                 <div className="name">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Name *</p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px",color:'#dadada' }}>Name *</p>
                     <TextField
                         hiddenLabel
                         id="filled-hidden-label-small"
@@ -153,7 +153,7 @@ function Account(props) {
                     />
                 </div>
                 <div className="email">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Email *</p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px",color:'#dadada' }}>Email *</p>
                     <TextField
                         type="email"
                         hiddenLabel
@@ -168,7 +168,7 @@ function Account(props) {
                     />
                 </div>
                 <div className="cover">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Cover Image url</p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px",color:'#dadada' }}>Cover Image url</p>
                     <TextField
                         type="email"
                         hiddenLabel
@@ -183,7 +183,7 @@ function Account(props) {
                     />
                 </div>
                 <div className="bio">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Bio</p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px",color:'#dadada' }}>Bio</p>
                     <TextField
                         hiddenLabel
                         id="outlined-multiline-static"
@@ -199,7 +199,7 @@ function Account(props) {
 
                 </div>
                 <div className="password">
-                    <p style={{ fontSize: "13.5px", marginBottom: "5px" }}>Change Password <span style={{fontSize:'10px',color:'red'}}>Fill only in case you want to change</span> </p>
+                    <p style={{ fontSize: "13.5px", marginBottom: "5px",color:'#dadada' }}>Change Password <span style={{fontSize:'10.95px',color:'red'}}>Fill only in case you want to change</span> </p>
                     <TextField
                         type="password"
                         hiddenLabel

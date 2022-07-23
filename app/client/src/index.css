@@ -2,7 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F6F8FB;
+  background-color: #000000;
 
   font-family: 'Poppins', sans-serif;
   
@@ -60,7 +60,10 @@ body {
 }
 
 .hoverbtn:hover {
-  background-color: rgb(243, 243, 243);
+  background-color: rgb(59, 62, 65);
+}
+*::placeholder{
+  color: rgb(218, 218, 218);
 }
 
 .bottomnavbar {
@@ -69,7 +72,7 @@ body {
   width: 100%;
   height: 55px;
   z-index: 999;
-  background-color: white;
+  background-color: rgb(33 35 36);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,7 +91,7 @@ body {
 
 .filter {
   width: 30%;
-  background-color: white;
+  background-color: rgb(33 35 36);
   height: 45px;
   border-radius: 9px;
   margin-bottom: -9px;
@@ -97,7 +100,7 @@ body {
 
 .searchbar {
   width: 70%;
-  background-color: white;
+  background-color: rgb(33 35 36);
   height: 45px;
   border-radius: 9px;
   margin-bottom: -9px;
@@ -110,13 +113,14 @@ body {
 
 .userdetails {
   width: 70%;
-  background: white;
+  background: rgb(33 35 36);
   border-radius: 9px;
   padding: 7px;
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  color:rgb(218, 218, 218)
 }
 
 .leftfollowers {

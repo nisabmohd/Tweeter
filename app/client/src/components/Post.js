@@ -240,15 +240,15 @@ export default function Post(props) {
             });
     }
     return (
-        <div style={{ backgroundColor: 'white', borderRadius: '9px', marginBottom: '15px', paddingBottom: '15px' }}>
+        <div style={{ backgroundColor: 'rgb(33 35 36)', borderRadius: '9px', marginBottom: '15px', paddingBottom: '15px' }}>
             <Toaster />
-            <div className='post' style={{ padding: '12px', backgroundColor: 'white', borderRadius: '9px', position: 'relative', paddingBottom: '5.5px' }}>
+            <div className='post' style={{ padding: '12px', backgroundColor: 'rgb(33 35 36)', borderRadius: '9px', position: 'relative', paddingBottom: '5.5px' }}>
                 <div className="userheader">
                     <div className="user" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '15px' }}>
                         <Link to={`/user/${user?.uid}`} style={{ marginLeft: '2%' }}><img style={{ width: '34px', borderRadius: '9px' }} src={user?.userimg} alt="" /></Link>
                         <div className="timeuser" style={{ display: 'flex', flexDirection: 'column', }}>
-                            <h6 style={{ fontSize: '12.25px', margin: '0', marginLeft: '12px', width: 'fit-content' }}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{user?.username}</Link></h6>
-                            <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px' }}>{props.date}</p>
+                            <h6 style={{ fontSize: '12.25px', margin: '0', marginLeft: '12px', width: 'fit-content' }}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: '#dadada' }}>{user?.username}</Link></h6>
+                            <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px',color:'#dadada' }}>{props.date}</p>
                         </div>
                     </div>
                     <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19.5px' }} />
@@ -273,11 +273,11 @@ export default function Post(props) {
                 {
                     (props.noturl) ? <div style={{ textDecoration: 'none', color: 'inherit' }} >
                         <div className="captions">
-                            <p style={{ fontSize: '12.75px', marginLeft: '2%' }}>{props.caption}</p>
+                            <p style={{ fontSize: '12.75px', marginLeft: '2%',color:'white' }}>{props.caption}</p>
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: '#dadada', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -289,11 +289,11 @@ export default function Post(props) {
                         </div>
                     </div> : <Link to={`/post/${props.postid}`} style={{ textDecoration: 'none', color: 'inherit' }} >
                         <div className="captions">
-                            <p style={{ fontSize: '12.75px', marginLeft: '2%' }}>{props.caption}</p>
+                            <p style={{ fontSize: '12.75px', marginLeft: '2%',color:'white' }}>{props.caption}</p>
                             <div className="hashtags" style={{ display: 'flex', flexDirection: 'row' }}>
                                 {
                                     props.hashtag?.map((item, index) => {
-                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: 'rgb(47, 128, 237)', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
+                                        return <Link to={`/search/${item}`} key={index} style={{ fontSize: '12.55px', marginLeft: '2%', color: '#dadada', marginTop: '-7px', textDecoration: 'none', marginBottom: '7px' }}>#{item}</Link>
                                     })
                                 }
                             </div>
@@ -309,7 +309,7 @@ export default function Post(props) {
 
             </div>
             <div className="benchmarks" style={{ display: 'flex', flexDirection: 'row', width: 'fit-content', marginLeft: 'auto', marginRight: '2%' }}>
-                <p onClick={handleClickOpenLikes} style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px", cursor: 'pointer' }}>{likesCount} Likes</p>
+                <p onClick={handleClickOpenLikes} style={{ fontSize: '10px', color: '#dadada', marginRight: "9px", cursor: 'pointer' }}>{likesCount} Likes</p>
                 <Dialog
                     open={openlikes}
                     onClose={handleCloseLikes}
@@ -324,7 +324,7 @@ export default function Post(props) {
                         {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
                     </DialogContent>
                 </Dialog>
-                <p onClick={handleClickOpenRetweets} style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px", cursor: 'pointer' }}>{retweetCount} Retweets</p>
+                <p onClick={handleClickOpenRetweets} style={{ fontSize: '10px', color: '#dadada', marginRight: "9px", cursor: 'pointer' }}>{retweetCount} Retweets</p>
                 <Dialog
                     open={openretweets}
                     onClose={handleCloseRetweets}
@@ -339,12 +339,12 @@ export default function Post(props) {
                         {/* <Followers uid={props.uid} profilefollowing={setMyfollowing} foll={myFollowing} ></Followers> */}
                     </DialogContent>
                 </Dialog>
-                <Link to={`/post/${props.postid}`} style={{ textDecoration: 'none', color: 'inherit' }}><p style={{ fontSize: '10px', color: 'rgb(130, 130, 130)', marginRight: "9px" }}>{commentsCount} Comments</p></Link>
+                <Link to={`/post/${props.postid}`} style={{ textDecoration: 'none', color: 'inherit' }}><p style={{ fontSize: '10px', color: '#dadada', marginRight: "9px" }}>{commentsCount} Comments</p></Link>
             </div>
             <div className="actionbuttons" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '85%', margin: 'auto', marginTop: '6px' }}>
                 <Button onClick={handleClickOpen1} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
-                    <ChatBubbleOutlineIcon style={{ width: '18px', }} />
-                    <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Comment</p>
+                    <ChatBubbleOutlineIcon style={{ width: '18px',color:'white' }} />
+                    <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px',color:'white' }}>Comment</p>
                 </Button>
                 <Dialog
                     open={open1}
@@ -381,25 +381,25 @@ export default function Post(props) {
                 </Dialog>
                 <Button onClick={() => handleRetweet()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
-                        retweeted ? <><SyncIcon style={{ width: '18px', color: 'rgb(117,192,96)' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(117,192,96)', marginLeft: '9px' }}>Retweet</p></> : <><SyncIcon style={{ width: '18px' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Retweet</p></>
+                        retweeted ? <><SyncIcon style={{ width: '18px', color: '#27BE67' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', color: '#27BE67', marginLeft: '9px' }}>Retweet</p></> : <><SyncIcon style={{ width: '18px',color:'white' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px',color:'white' }}>Retweet</p></>
                     }
 
                 </Button>
                 <Button onClick={() => handleLike()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
                         liked ? <><FavoriteIcon style={{ width: '18px', color: 'red' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'red', marginLeft: '9px' }}>Like</p></> : <><FavoriteBorderIcon style={{ width: '18px' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Like</p></>
+                            <p className='parahideaction' style={{ fontSize: '12px', color: 'red', marginLeft: '9px' }}>Like</p></> : <><FavoriteBorderIcon style={{ width: '18px',color:'white' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px',color:'white' }}>Like</p></>
                     }
 
                 </Button>
                 <Button onClick={() => handleSave()} className="likes hoverbtn" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.2px 9px', borderRadius: '6px', cursor: 'pointer', paddingRight: '12px', border: 'none', outline: 'none', color: 'inherit', fontFamily: 'Poppins', textTransform: 'lowercase' }}>
                     {
                         saved ? <> <BookmarkIcon style={{ width: '18px', color: 'rgb(47, 128, 237)' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(47, 128, 237)', marginLeft: '9px' }}>Save</p></> : <> <BookmarkBorderIcon style={{ width: '18px' }} />
-                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px' }}>Save</p></>
+                            <p className='parahideaction' style={{ fontSize: '12px', color: 'rgb(47, 128, 237)', marginLeft: '9px' }}>Save</p></> : <> <BookmarkBorderIcon style={{ width: '18px',color:'white' }} />
+                            <p className='parahideaction' style={{ fontSize: '12px', marginLeft: '9px',color:'white' }}>Save</p></>
                     }
 
                 </Button>

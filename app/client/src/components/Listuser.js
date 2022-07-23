@@ -34,7 +34,7 @@ export default function Listuser(props) {
       {
         users?.length !== 0 ?
           users?.map(item => <Renderusers profilefollowing={props.profilefollowing} foll={props.foll} key={item} specific={props.specific} uid={item} />)
-          : <CircularProgress sx={{margin:'29px'}} />
+          : users.length===0?<><p style={{ fontSize: '13px',color:'white' }}>Nothing to see here</p></>:<CircularProgress sx={{margin:'29px'}} />
       }
     </>
   )

@@ -251,7 +251,7 @@ export default function Post(props) {
                             <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px',color:'#dadada' }}>{props.date}</p>
                         </div>
                     </div>
-                    <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19.5px' }} />
+                    <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19.5px',color:'white'}} />
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}

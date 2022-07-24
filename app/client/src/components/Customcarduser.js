@@ -75,7 +75,7 @@ export default function Customcarduser(props) {
                         <Skeleton variant="text" />
                     </div>
                 </div>
-            </> : <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid rgb(88 88 88)', marginLeft: '0px', width: props.width, marginTop: '10px' }}>
+            </> : <div key={props.uid} className="userfollow" style={{ borderTop: '1px solid #383636', marginLeft: '0px', width: props.width, marginTop: '10px' }}>
                 <div className="header" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '19px' }}>
                     <div className="userimg">
                         <Link to={`/user/${props.uid}`}><img style={{ width: '32px', borderRadius: '9px', marginLeft: '2.8%' }} src={props.userimg} alt="" /></Link>

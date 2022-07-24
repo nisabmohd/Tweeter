@@ -20,7 +20,7 @@ export default function Tags(props) {
                 {
                     top.map(item => {
                         return <Link key={item._id} to={`/search/${item.tag}`} style={{textDecoration:'none',color:'inherit'}} ><div className="ptag" style={{ marginLeft: '15px' }}>
-                            <h6 style={{ fontSize: '12.55px', marginTop: '19px',color:'white' }}>#{item.tag}</h6>
+                            <h6 style={{ fontSize: '12.55px', marginTop: '19px',color:'#f6f6f6' }}>#{item.tag}</h6>
                             <p style={{ fontSize: '10.8px', marginTop: '-26px', color: 'rgb(218, 218, 218)' }}>{item.count} tweets</p>
                         </div>
                         </Link>

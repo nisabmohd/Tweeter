@@ -20,7 +20,7 @@ function Saved(props) {
       <div className="left_container">
         <div className="posts">
           {
-            saved?.length===0&&saved?( <div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No Saved Posts</p></div>):(<>
+            saved?.length===0&&saved?( <div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center',color:'white'}}>No Saved Posts</p></div>):(<>
             {
             saved?.map(item => {
               return <Post saved={item.saved}  likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />

@@ -10,9 +10,9 @@ export default function Listuser(props) {
       const result1 = await fetch(`${baseurl}/user/${props.uid}`)
       const data1 = await result1.json()
       if (props.following)
-        setUsers(data1.following)
+          setUsers(data1.following)
       if (props.followers)
-        setUsers(data1.followers)
+          setUsers(data1.followers)
 
     }
     async function getPost() {
@@ -32,9 +32,9 @@ export default function Listuser(props) {
   return (
     <>
       {
-        users? 
+        users ?
           users?.map(item => <Renderusers profilefollowing={props.profilefollowing} foll={props.foll} key={item} specific={props.specific} uid={item} />)
-          :<><p style={{ fontSize: '13px',color:'white' }}>Ohh Snap</p></>
+          : <><p style={{ fontSize: '14px', color: 'Red',fontWeight:'bold'}}>Seems Loading 😕</p></>
       }
     </>
   )

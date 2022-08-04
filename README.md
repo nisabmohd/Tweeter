@@ -22,16 +22,17 @@
 <!-- OVERVIEW -->
 
 ## Overview
-
+<img src="./images/6.png" />
 <img src="./images/1.png" />
 <img src="./images/2.png" />
 <img src="./images/5.png" />
 <img src="./images/3.png" />
+<img src="./images/4.png" />
 
-<p align="center">
+<!-- <p align="center">
 <img width="220px" style="margin-right:2px;" src="./images/phone.jpg" />
 <img width="220px" style="margin-right:9px;" src="./images/phone1.jpg" />
-<img width="220px" src="./images/phone2.jpg" />
+<img width="220px" src="./images/phone2.jpg" /> -->
 
 ### Built With
 

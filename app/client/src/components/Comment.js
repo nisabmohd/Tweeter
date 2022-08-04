@@ -20,7 +20,7 @@ export default function Comment(props) {
                     <h6 style={{ fontSize: '12.4px', margin: '0', marginLeft: '12px', width: 'fit-content' ,marginTop:'-19px',color:'#dadada'}}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: 'inherit' }}>{user?.username}</Link></h6>
                 </div>
             </div>
-            <p style={{ marginLeft: '67.5px', fontSize: '12.75px',marginTop:'-17px',color:'white' }}>{props.comment}</p>
+            <p style={{ marginLeft: '72.5px', fontSize: '12.75px',marginTop:'-17px',color:'white' }}>{props.comment}</p>
         </div>
     )
 }

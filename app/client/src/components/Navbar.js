@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/tweeter-light.svg'
+import logo from '../assets/image.png'
 import '../App.css'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link, NavLink } from "react-router-dom";
@@ -26,8 +26,9 @@ function Navbar(props) {
     return (
 
         <div className='navbar' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', height: '64px', backgroundColor: 'rgb(33 35 36)' }}>
-            <div className="logo" style={{ width: "30%" }}>
-                <img src={logo} alt="" style={{ marginLeft: "2.5vw", width: '109px' }} />
+            <div className="logo noselect" style={{ width: "30%",display:'flex',flexDirection:'row',height:'50%',alignItems:'center' }}>
+                <img src={logo} alt="" style={{ marginLeft: "2.5vw", width: '30px',minWidth:'28px' }} />
+                <h4 style={{color:'white',fontFamily:'Poppins',marginLeft:'7px'}}>Tweeter</h4>
             </div>
             <div className="tags navtags" >
                 <NavLink to="/" className={({ isActive }) => isActive ? 'tagstyle active' : 'tagstyle'}>Home</NavLink>

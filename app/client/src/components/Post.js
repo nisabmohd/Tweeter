@@ -363,11 +363,13 @@ export default function Post(props) {
                                     width: "345px",
                                     marginLeft: "9px",
                                     outline: "none",
-                                    border: "1px solid rgb(224, 224, 224)",
+                                    border: "1px solid rgb(80 78 78)",
+                                    color:'white',
                                     paddingLeft: "7px",
                                     borderRadius: "6px",
                                     fontFamily: "Poppins",
-                                    fontSize: "12px"
+                                    fontSize: "12px",
+                                    background:'transparent'
                                 }}
                                 placeholder="Tweet your reply"
                                 value={commentText}

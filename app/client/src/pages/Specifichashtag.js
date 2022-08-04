@@ -29,7 +29,7 @@ export default function Specifichashtag() {
                     {
                         posts.length === 0 ? <><div className="paragraph"style={{width:'100%'}}><p style={{textAlign:'center'}}>No post to see</p></div></> :
                             posts.map(item => {
-                                return <Post saved={item.saved}  likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp.toLocaleString("en-US").slice(0, 10)} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
+                                return <Post saved={item.saved}  likes={item.likes} comments={item.comments} retweets={item.retweet} postid={item.post_id} hashtag={item.hashtag} uid={item.uid} date={item.timestamp} key={item.post_id} userimg={item.userimg} img={item.image} name={item.username} caption={item.caption} />
                             })
                     }
                 </div>

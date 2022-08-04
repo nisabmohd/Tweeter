@@ -14,6 +14,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import toast, { Toaster } from 'react-hot-toast';
 import SendIcon from "@mui/icons-material/Send";
 import Listuser from './Listuser';
+import ReactTimeAgo from 'react-time-ago'
 
 
 export default function Post(props) {
@@ -248,7 +249,7 @@ export default function Post(props) {
                         <Link to={`/user/${user?.uid}`} style={{ marginLeft: '2%' }}><img style={{ width: '34px', borderRadius: '9px' }} src={user?.userimg} alt="" /></Link>
                         <div className="timeuser" style={{ display: 'flex', flexDirection: 'column', }}>
                             <h6 style={{ fontSize: '12.25px', margin: '0', marginLeft: '12px', width: 'fit-content' }}><Link to={`/user/${user?.uid}`} style={{ textDecoration: 'none', color: '#dadada' }}>{user?.username}</Link></h6>
-                            <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px',color:'#dadada' }}>{props.date}</p>
+                            <p style={{ fontSize: '9.85px', margin: '0', marginLeft: '12px',color:'#dadada' }}><ReactTimeAgo date={Date.parse(props.date)} locale="en-US"/></p>
                         </div>
                     </div>
                     <MoreVertIcon onClick={handleClick} style={{ fontSize: "16px", cursor: 'pointer', position: 'absolute', top: '30px', right: '19.5px',color:'white'}} />

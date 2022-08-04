@@ -24,7 +24,7 @@ export default function Specificpost() {
     <>
       <div className='container'>
         {
-          post ? <div style={{ width: '100%' }}><Post saved={post.saved}  noturl={true} likes={post.likes} comments={post.comments} retweets={post.retweet} postid={post.post_id} hashtag={post.hashtag} uid={post.uid} date={post.timestamp.toLocaleString("en-US").slice(0, 10)} key={post.post_id} userimg={post.userimg} img={post.image} name={post.username} caption={post.caption} /></div> : <></>
+          post ? <div style={{ width: '100%' }}><Post saved={post.saved}  noturl={true} likes={post.likes} comments={post.comments} retweets={post.retweet} postid={post.post_id} hashtag={post.hashtag} uid={post.uid} date={post.timestamp} key={post.post_id} userimg={post.userimg} img={post.image} name={post.username} caption={post.caption} /></div> : <></>
         }
 
       </div>
